@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/ruby/net-smtp.git
+  revision: 60df08b7e6f80375a3ccda2b28d3fdcfb711c359
+  specs:
+    net-smtp (0.5.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -125,7 +131,6 @@ GEM
       net-protocol
     net-protocol (0.2.2)
       timeout
-    net-smtp (0.5.0)
     nio4r (2.7.3)
     nokogiri (1.16.7)
       mini_portile2 (~> 2.8.2)
@@ -261,6 +266,7 @@ DEPENDENCIES
   brakeman
   debug
   jbuilder
+  net-smtp!
   puma (>= 5.0)
   rails (~> 7.2.1)
   rubocop
