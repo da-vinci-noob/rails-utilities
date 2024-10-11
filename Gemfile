@@ -43,4 +43,5 @@ group :development do
   gem "web-console"
 end
 
+gem 'benchmark'
 gem 'vite_rails'
