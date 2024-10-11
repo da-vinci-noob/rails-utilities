@@ -1,31 +1,12 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import DarkMode from '@/components/addons/DarkMode.vue'
+import { utilities } from '@/data/utilities'
 
 const placeholder = ref('/placeholder.svg')
 
 // prettier-ignore
 import { File, MoreHorizontal, PlusCircle, Search, Badge, Button, Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, Input, Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/addons/ThemeImport.vue'
-
-const utilities = ref([
-  {
-    id: 1,
-    title: 'ExifTool',
-    description:
-      'ExifTool is a customizable set of Perl modules plus a full-featured command-line application for reading and writing meta information',
-    icon: 'placeholder.svg',
-    status: 'Stable',
-    createdAt: '2023-07-12 10:42 AM'
-  },
-  {
-    id: 2,
-    title: 'Ruby Benchmark',
-    description: 'Benchmark and Compare Codes',
-    icon: 'placeholder.svg',
-    status: 'Testing',
-    createdAt: '2023-07-12 10:42 AM'
-  }
-])
 
 const utilitiesStatusList = ref(['All', 'Stable', 'Beta', 'Testing'])
 
@@ -35,7 +16,7 @@ const sortKey = ref('name')
 const utilitiesByStatus = ref('All')
 
 const filteredAndSortedUtilities = computed(() => {
-  let result = utilities.value
+  let result = utilities
 
   // Filter based on search query
   if (searchQuery.value) {
