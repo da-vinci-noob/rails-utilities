@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./app/frontend",
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "paths": {
+      "@/*": [
+        "*"
+      ]
+    }
+  },
+}
