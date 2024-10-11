@@ -26,6 +26,8 @@ AllCops:
     - 'actionmailbox/test/dummy/**/*'
     - 'actiontext/test/dummy/**/*'
     - '**/node_modules/**/*'
+    - 'config/**/*'
+    - 'bin/**/*'
 
 # Exclude/Includes
 
@@ -308,6 +310,7 @@ Style/DefWithParentheses:
 Style/FrozenStringLiteralComment:
   Enabled: true
   EnforcedStyle: always
+  SafeAutoCorrect: true
   Exclude:
     - 'actionview/test/**/*.builder'
     - 'actionview/test/**/*.ruby'
