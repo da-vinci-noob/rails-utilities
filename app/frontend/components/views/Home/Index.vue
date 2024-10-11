@@ -26,6 +26,8 @@ const formattedDate = (date: Date) => {
 const trimDescription = (description: string, maxLength: number = 100) =>
   description.length > maxLength ? `${description.slice(0, maxLength)}...` : description
 
+const titleToPath = (title: string) => title.toLowerCase().replace(/\s+/g, '_')
+
 const filteredAndSortedUtilities = computed(() => {
   let result = utilities
 
@@ -169,7 +171,7 @@ import { File, MoreHorizontal, PlusCircle, Search, Badge, Button, Card, CardCont
                     />
                   </TableCell>
                   <TableCell class="font-medium">
-                    {{ utility.title }}
+                    <router-link :to="titleToPath(utility.title)">{{ utility.title }}</router-link>
                   </TableCell>
                   <TableCell>
                     <Badge variant="outline">
