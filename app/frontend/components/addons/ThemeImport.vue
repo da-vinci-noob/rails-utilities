@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
 import { File, MoreHorizontal, PlusCircle, Search, Loader2 } from 'lucide-vue-next'
 
 import { Badge } from '@/components/ui/badge'
