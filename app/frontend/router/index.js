@@ -7,7 +7,7 @@ const titleToPath = (title) => title.replace(/\s+/g, '_')
 
 const routes = utilities.map((utility) => ({
   path: `/${titleToPath(utility.title).toLowerCase()}`,
-  name: utility.title,
+  name: { title: utility.title, description: utility.description },
   component: () => import(`@/components/views/${utility.title.replace(/\s+/g, '')}/Index.vue`) // Create New Component based on title without spaces
 }))
 

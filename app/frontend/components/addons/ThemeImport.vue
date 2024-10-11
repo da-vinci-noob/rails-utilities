@@ -1,5 +1,5 @@
 <script lang="ts">
-import { File, MoreHorizontal, PlusCircle, Search } from 'lucide-vue-next'
+import { File, MoreHorizontal, PlusCircle, Search, Loader2 } from 'lucide-vue-next'
 
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -21,6 +21,8 @@ import {
   BreadcrumbSeparator
 } from '@/components/ui/breadcrumb'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
+import { Textarea } from '@/components/ui/textarea'
+import { Label } from '@/components/ui/label'
 
 export {
   File,
@@ -52,6 +54,9 @@ export {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
+  Textarea,
+  Label,
+  Loader2
 }
 </script>
