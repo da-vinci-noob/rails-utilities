@@ -1,19 +1,30 @@
 <script setup lang="ts">
+// Imports
 import { ref, computed } from 'vue'
-import DarkMode from '@/components/addons/DarkMode.vue'
+import { format } from 'date-fns'
 import { utilities } from '@/data/utilities'
+import DarkMode from '@/components/addons/DarkMode.vue'
 
+// Variables
 const placeholder = ref('/placeholder.svg')
-
-// prettier-ignore
-import { File, MoreHorizontal, PlusCircle, Search, Badge, Button, Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, Input, Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/addons/ThemeImport.vue'
-
 const utilitiesStatusList = ref(['All', 'Stable', 'Beta', 'Testing'])
-
 const searchQuery = ref('')
 const sortOrder = ref('asc')
 const sortKey = ref('name')
 const utilitiesByStatus = ref('All')
+
+// Lifecycles
+// onMounted(() => {
+//   utilities.value = JSON.parse(home.dataset.utilities)
+// })
+
+// Functions
+const formattedDate = (date: Date) => {
+  return format(date, 'dd/MMM/yyyy')
+}
+
+const trimDescription = (description: string, maxLength: number = 100) =>
+  description.length > maxLength ? `${description.slice(0, maxLength)}...` : description
 
 const filteredAndSortedUtilities = computed(() => {
   let result = utilities
@@ -42,6 +53,10 @@ const filteredAndSortedUtilities = computed(() => {
 
   return result
 })
+
+// Theme Import
+// prettier-ignore
+import { File, MoreHorizontal, PlusCircle, Search, Badge, Button, Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, Input, Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/addons/ThemeImport.vue'
 </script>
 
 <template>
@@ -162,10 +177,10 @@ const filteredAndSortedUtilities = computed(() => {
                     </Badge>
                   </TableCell>
                   <TableCell class="hidden md:table-cell">
-                    {{ utility.description }}
+                    {{ trimDescription(utility.description) }}
                   </TableCell>
-                  <TableCell class="hidden md:table-cell">
-                    {{ utility.createdAt }}
+                  <TableCell class="hidden md:table-cell whitespace-nowrap">
+                    {{ formattedDate(utility.createdAt) }}
                   </TableCell>
                   <TableCell>
                     <DropdownMenu>
