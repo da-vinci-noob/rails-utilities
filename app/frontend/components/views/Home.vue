@@ -1,8 +1,9 @@
-<script lang="ts" setup>
-import { ref } from 'vue'
-const test = ref('Hello from Vue')
+<script setup lang="ts">
+import { Button } from '@/components/ui/button'
 </script>
 
 <template>
-  <div>{{ test }}</div>
+  <div>
+    <Button>Click me</Button>
+  </div>
 </template>
