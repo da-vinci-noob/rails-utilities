@@ -27,7 +27,7 @@ console.log('Visit the guide for more information: ', 'https://vite-ruby.netlify
 // Example: Import a stylesheet in app/frontend/index.css
 // import '~/index.css'
 import { createApp } from 'vue'
-import Home from '../components/views/Home.vue'
+import Home from '../components/views/Home/Index.vue'
 
 const homeElement = document.querySelector('#home')
 if (homeElement) {
