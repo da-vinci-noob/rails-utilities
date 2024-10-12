@@ -46,4 +46,4 @@ end
 gem 'benchmark'
 gem 'vite_rails'
 gem 'net-smtp', github: 'ruby/net-smtp' # fix: github CI
-gem 'safe_ruby'
+gem 'safe_ruby', github: 'da-vinci-noob/safe_ruby'

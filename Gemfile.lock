@@ -1,4 +1,11 @@
 GIT
+  remote: https://github.com/da-vinci-noob/safe_ruby.git
+  revision: 34b1e3b2cd3357b34e07002f7dbd6dac8169d29d
+  specs:
+    safe_ruby (1.0.6)
+      childprocess (~> 5)
+
+GIT
   remote: https://github.com/ruby/net-smtp.git
   revision: 60df08b7e6f80375a3ccda2b28d3fdcfb711c359
   specs:
@@ -215,8 +222,6 @@ GEM
       rubocop (>= 1.52.0, < 2.0)
       rubocop-ast (>= 1.31.1, < 2.0)
     ruby-progressbar (1.13.0)
-    safe_ruby (1.0.5)
-      childprocess (~> 5)
     securerandom (0.3.1)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
@@ -277,7 +282,7 @@ DEPENDENCIES
   rubocop-packaging
   rubocop-performance
   rubocop-rails
-  safe_ruby
+  safe_ruby!
   sprockets-rails
   tailwindcss-rails
   tzinfo-data
