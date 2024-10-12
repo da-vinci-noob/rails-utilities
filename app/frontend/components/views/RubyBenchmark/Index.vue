@@ -116,7 +116,7 @@ import { File, MoreHorizontal, PlusCircle, Search, Badge, Button, Card, CardCont
             <BreadcrumbSeparator />
             <BreadcrumbItem>
               <BreadcrumbLink as-child>
-                <a href="#">{{utility?.title}}</a>
+                <a href="#">{{ utility?.title }}</a>
               </BreadcrumbLink>
             </BreadcrumbItem>
           </BreadcrumbList>
@@ -178,8 +178,8 @@ import { File, MoreHorizontal, PlusCircle, Search, Badge, Button, Card, CardCont
               {{ utility?.description }}
             </CardDescription>
           </CardHeader>
-          <CardContent class="flex flex-row w-full space-x-5">
-            <div class="w-1/2 flex flex-col">
+          <CardContent class="flex sm:flex-row flex-col w-full sm:space-x-5">
+            <div class="sm:w-1/2 flex flex-col">
               <Label for="message-2" class="mb-3">Your Code block</Label>
               <Textarea id="message-2" placeholder="Type your block of Code." v-model="message1" />
               <p class="text-sm text-muted-foreground mt-4">
@@ -191,13 +191,12 @@ import { File, MoreHorizontal, PlusCircle, Search, Badge, Button, Card, CardCont
                     Real Time: {{ parseFloat(results.code1.real_time) }}
                   </p>
                 </span>
-                <span v-else>Results will appear here</span>
-                <p class="text-red-600">
-                  {{ results.message }}
-                </p>
+              </p>
+              <p class="text-red-600">
+                {{ results.message }}
               </p>
             </div>
-            <div class="w-1/2 flex flex-col">
+            <div class="sm:w-1/2 flex flex-col">
               <Label for="message-2" class="mb-3">Your Code block</Label>
               <Textarea id="message-2" placeholder="Type your block of Code." v-model="message2" />
               <p class="text-sm text-muted-foreground mt-4">
@@ -213,11 +212,14 @@ import { File, MoreHorizontal, PlusCircle, Search, Badge, Button, Card, CardCont
             </div>
           </CardContent>
           <CardFooter>
-            <Button variant="secondary" @click="submitMessages" v-if="buttonActive">Button</Button>
-            <Button disabled v-else>
-              <Loader2 class="w-4 h-4 mr-2 animate-spin" />
-              Please wait
-            </Button>
+            <div>
+              <div v-if="!results.message && !results.success">Results will appear here</div>
+              <Button variant="secondary" @click="submitMessages" v-if="buttonActive">Button</Button>
+              <Button disabled v-else>
+                <Loader2 class="w-4 h-4 mr-2 animate-spin" />
+                Please wait
+              </Button>
+            </div>
             <!-- <div class="text-xs text-muted-foreground">
               Showing
               <strong>
