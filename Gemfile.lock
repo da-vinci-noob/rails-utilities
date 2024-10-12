@@ -1,9 +1,10 @@
 GIT
-  remote: https://github.com/da-vinci-noob/safe_ruby.git
-  revision: 34b1e3b2cd3357b34e07002f7dbd6dac8169d29d
+  remote: https://github.com/da-vinci-noob/shikashi.git
+  revision: 7c426f5fa59ac8dd2e9cfeb238c76bbf8765884d
   specs:
-    safe_ruby (1.0.6)
-      childprocess (~> 5)
+    shikashi (0.7.0)
+      evalhook (>= 0.6.0)
+      getsource (>= 0.1.0)
 
 GIT
   remote: https://github.com/ruby/net-smtp.git
@@ -94,18 +95,18 @@ GEM
     brakeman (6.2.1)
       racc
     builder (3.3.0)
-    childprocess (5.1.0)
-      logger (~> 1.5)
+    coderay (1.1.3)
     concurrent-ruby (1.3.4)
     connection_pool (2.4.1)
     crass (1.0.6)
     date (3.3.4)
-    debug (1.9.2)
-      irb (~> 1.10)
-      reline (>= 0.3.8)
     drb (2.2.1)
     dry-cli (1.1.0)
     erubi (1.13.0)
+    evalhook (0.6.0)
+      partialruby (~> 0.3)
+      sexp_processor (~> 4.0)
+    getsource (0.2.2)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.6)
@@ -129,6 +130,7 @@ GEM
       net-pop
       net-smtp
     marcel (1.0.4)
+    method_source (1.1.0)
     mini_mime (1.1.5)
     mini_portile2 (2.8.7)
     minitest (5.25.1)
@@ -148,6 +150,12 @@ GEM
     parser (3.3.5.0)
       ast (~> 2.4.1)
       racc
+    partialruby (0.3.0)
+      ruby2ruby (~> 2)
+      ruby_parser (~> 3)
+    pry (0.14.2)
+      coderay (~> 1.1)
+      method_source (~> 1.0)
     psych (5.1.2)
       stringio
     puma (6.4.3)
@@ -222,7 +230,14 @@ GEM
       rubocop (>= 1.52.0, < 2.0)
       rubocop-ast (>= 1.31.1, < 2.0)
     ruby-progressbar (1.13.0)
+    ruby2ruby (2.5.1)
+      ruby_parser (~> 3.1)
+      sexp_processor (~> 4.6)
+    ruby_parser (3.21.1)
+      racc (~> 1.5)
+      sexp_processor (~> 4.16)
     securerandom (0.3.1)
+    sexp_processor (4.17.2)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -273,16 +288,16 @@ DEPENDENCIES
   benchmark
   bootsnap
   brakeman
-  debug
   jbuilder
   net-smtp!
+  pry
   puma (>= 5.0)
   rails (~> 7.2.1)
   rubocop
   rubocop-packaging
   rubocop-performance
   rubocop-rails
-  safe_ruby!
+  shikashi!
   sprockets-rails
   tailwindcss-rails
   tzinfo-data

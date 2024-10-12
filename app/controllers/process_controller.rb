@@ -2,6 +2,8 @@
 
 # Contains all the processes done for an utility
 class ProcessController < ApplicationController
+  include SandboxHelper
+
   def benchmark
     message1, message2 = benchmark_params.values_at(:message1, :message2)
 
@@ -12,7 +14,10 @@ class ProcessController < ApplicationController
       render_success(results)
     rescue ArgumentError => e
       render_blank_message(e.message)
-    rescue StandardError => e
+    rescue SecurityError => e
+      my_logger.fatal e.inspect
+      display_security_message
+    rescue SyntaxError, StandardError => e
       log_and_render_error(e)
     end
   end
@@ -24,13 +29,15 @@ class ProcessController < ApplicationController
   end
 
   def remove_not_needed_output(error_string)
-    error_string.gsub(%r{/[^\s]+:\d+|eval}, '')
+    error_string.gsub(/for module.+/im, '')
   end
 
   def perform_benchmark(message1, message2)
+    sandbox, priv = setup_sandbox
+
     Benchmark.bm do |x|
-      x.report('message1:') { SafeRuby.eval(message1) }
-      x.report('message2:') { SafeRuby.eval(message2) }
+      x.report('message1:') { sandbox.run(priv, message1) }
+      x.report('message2:') { sandbox.run(priv, message2) }
     end
   end
 
@@ -54,8 +61,21 @@ class ProcessController < ApplicationController
 
   # rubocop:disable Naming/MethodParameterName
   def log_and_render_error(e)
-    Rails.logger.error e.inspect
-    render json: { success: false, message: "Check your Code Block, #{remove_not_needed_output(e.message)}" }
+    my_logger.error e.inspect
+    render json:   { success: false, message: "Check your Code Block, #{e.class} - #{remove_not_needed_output(e.message)}" },
+           status: :unprocessable_entity
   end
   # rubocop:enable Naming/MethodParameterName
+
+  def display_security_message
+    render json: {
+      success: false,
+      message: 'Code Blocked, if you feel the command has no security risk. ' \
+               'Open an issue with your command to whitelist the method'
+    }, status: :forbidden
+  end
+
+  def my_logger
+    @my_logger ||= Logger.new(Rails.root.join('log/errors.log'))
+  end
 end
