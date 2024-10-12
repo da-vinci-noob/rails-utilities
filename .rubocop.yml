@@ -29,7 +29,7 @@ AllCops:
     - 'config/**/*'
     - 'bin/**/*'
 
-# Exclude/Includes
+### Exclude/Includes start
 
 Performance:
   Exclude:
@@ -45,20 +45,12 @@ Rails/RefuteMethods:
   Include:
     - '**/test/**/*'
 
-Rails/IndexBy:
-  Enabled: true
-
-Rails/IndexWith:
-  Enabled: true
+### Exclude/Includes End
 
 Bundler/OrderedGems:
   Enabled: false
 
-# Align `when` with `case`.
-Layout/CaseIndentation:
-  Enabled: true
-
-# Layouts
+### Layout Cops Start
 
 Layout/ClassStructure:
   Enabled: true
@@ -259,6 +251,13 @@ Layout/TrailingEmptyLines:
 Layout/TrailingWhitespace:
   Enabled: true
 
+# Align `when` with `case`.
+Layout/CaseIndentation:
+  Enabled: true
+
+# Layout Cops End
+
+# Lint Cops Start
 Lint/AmbiguousOperator:
   Enabled: true
 
@@ -289,6 +288,105 @@ Lint/UriEscapeUnescape:
 
 Lint/UselessAssignment:
   Enabled: true
+  AutoCorrect: false
+
+### Lint Cops End
+
+### Metrics Cops start
+
+Metrics/MethodLength:
+  Enabled: true
+  Max: 25
+
+### Metrics Cops End
+
+### Performance Cops start
+
+Performance/CaseWhenSplat:
+  Enabled: true
+
+Performance/ChainArrayAllocation:
+  Enabled: true
+
+Performance/FlatMap:
+  Enabled: true
+
+Performance/IoReadlines:
+  Enabled: true
+
+Performance/RedundantMerge:
+  Enabled: true
+
+Performance/StartWith:
+  Enabled: true
+
+Performance/EndWith:
+  Enabled: true
+
+Performance/RegexpMatch:
+  Enabled: true
+
+Performance/ReverseEach:
+  Enabled: true
+
+Performance/SelectMap:
+  Enabled: true
+
+Performance/UnfreezeString:
+  Enabled: true
+
+Performance/DeletePrefix:
+  Enabled: true
+
+Performance/DeleteSuffix:
+  Enabled: true
+
+### Performance Cops End
+
+### Rails Cops Starts
+
+Rails/ActiveRecordCallbacksOrder:
+  Enabled: true
+
+Rails/ExpandedDateRange:
+  Enabled: true
+
+Rails/FindById:
+  Enabled: true
+
+Rails/MailerName:
+  Enabled: true
+
+Rails/NegateInclude:
+  Enabled: true
+
+Rails/OrderById:
+  Enabled: true
+
+Rails/PluckId:
+  Enabled: true
+
+Rails/RenderPlainText:
+  Enabled: true
+
+Rails/WhereEquals:
+  Enabled: true
+
+Rails/WhereExists:
+  Enabled: true
+
+Rails/WhereNot:
+  Enabled: true
+
+Rails/IndexBy:
+  Enabled: true
+
+Rails/IndexWith:
+  Enabled: true
+
+### Rails Cops End
+
+### Styles Cops Start
 
 # Prefer &&/|| over and/or.
 Style/AndOr:
@@ -406,75 +504,4 @@ Style/SwapValues:
 
 Style/TrivialAccessors:
   Enabled: true
-
-Performance/CaseWhenSplat:
-  Enabled: true
-
-Performance/ChainArrayAllocation:
-  Enabled: true
-
-Performance/FlatMap:
-  Enabled: true
-
-Performance/IoReadlines:
-  Enabled: true
-
-Performance/RedundantMerge:
-  Enabled: true
-
-Performance/StartWith:
-  Enabled: true
-
-Performance/EndWith:
-  Enabled: true
-
-Performance/RegexpMatch:
-  Enabled: true
-
-Performance/ReverseEach:
-  Enabled: true
-
-Performance/SelectMap:
-  Enabled: true
-
-Performance/UnfreezeString:
-  Enabled: true
-
-Performance/DeletePrefix:
-  Enabled: true
-
-Performance/DeleteSuffix:
-  Enabled: true
-
-Rails/ActiveRecordCallbacksOrder:
-  Enabled: true
-
-Rails/ExpandedDateRange:
-  Enabled: true
-
-Rails/FindById:
-  Enabled: true
-
-Rails/MailerName:
-  Enabled: true
-
-Rails/NegateInclude:
-  Enabled: true
-
-Rails/OrderById:
-  Enabled: true
-
-Rails/PluckId:
-  Enabled: true
-
-Rails/RenderPlainText:
-  Enabled: true
-
-Rails/WhereEquals:
-  Enabled: true
-
-Rails/WhereExists:
-  Enabled: true
-
-Rails/WhereNot:
-  Enabled: true
+### Styles End
