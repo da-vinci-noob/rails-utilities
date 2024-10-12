@@ -184,7 +184,7 @@ Layout/LineLength:
 
 Layout/RedundantLineBreak:
   Enabled: true
-  InspectBlocks: true
+  InspectBlocks: false
 
 # if method calls are chained onto single line blocks. It considers that a line break before the dot improves the readability of the code.
 Layout/SingleLineBlockChain:
