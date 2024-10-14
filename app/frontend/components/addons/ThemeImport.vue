@@ -1,5 +1,5 @@
 <script>
-import { File, MoreHorizontal, PlusCircle, Search, Loader2 } from 'lucide-vue-next'
+import { File, MoreHorizontal, PlusCircle, Search, Loader2, ArrowLeft } from 'lucide-vue-next'
 
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -57,6 +57,7 @@ export {
   TableRow,
   Textarea,
   Label,
-  Loader2
+  Loader2,
+  ArrowLeft
 }
 </script>
