@@ -16,6 +16,6 @@ module SandboxHelper
   end
 
   def whitelisted_method_names
-    %i[puts print p map each to_a to_i to_f]
+    %i[puts print p map each to_a to_i to_f method_missing]
   end
 end
