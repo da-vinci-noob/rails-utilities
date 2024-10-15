@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // Imports
-import { ref, computed, defineProps } from 'vue'
+import { ref, computed } from 'vue'
 import { utilities } from '@/data/utilities'
 import UtilityCard from './UtilityCard.vue'
 

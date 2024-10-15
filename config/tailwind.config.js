@@ -7,6 +7,7 @@ module.exports = {
     './app/frontend/components/**/*.{ts,tsx,vue}',
     './app/frontend/pages/**/*.{ts,tsx,vue}',
     './app/frontend/lib/**/*.vue',
+    './app/frontend/App.vue',
     './app/views/**/*.{erb,haml,html,slim}',
     './public/*.html'
   ],

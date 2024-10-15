@@ -1,6 +1,5 @@
 <script setup lang="ts">
 // Imports
-import { defineEmits } from 'vue'
 import { Search, Input } from '@/components/addons/ThemeImport.vue'
 
 // Emits
