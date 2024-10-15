@@ -2,7 +2,7 @@
 // Imports
 import { ref, computed, defineProps } from 'vue'
 import { utilities } from '@/data/utilities'
-import UtilityCard from './UtilityCard..vue'
+import UtilityCard from './UtilityCard.vue'
 
 // Define props
 const props = defineProps<{
@@ -15,36 +15,20 @@ const utilitiesByStatus = ref('All')
 
 // Functions
 const filteredAndSortedUtilities = computed(() => {
-  let result = utilities
-
-  // Filter based on search query
-  if (props.searchQuery) {
-    const query = props.searchQuery.toLowerCase()
-    result = result.filter(
-      (utility: { title: string; description: string }) =>
-        utility.title.toLowerCase().includes(query) || utility.description.toLowerCase().includes(query)
-    )
-  }
-
-  // Filter Based on Status
-  if (utilitiesByStatus.value && utilitiesByStatus.value != 'All') {
-    result = result.filter((utility: { status: string }) => utility.status === utilitiesByStatus.value)
-  }
-
-  // Sort based on sortKey and sortOrder
-  // result.sort((a, b) => {
-  //   let modifier = sortOrder.value === 'asc' ? 1 : -1
-  //   if (a[sortKey.value] < b[sortKey.value]) return -1 * modifier
-  //   if (a[sortKey.value] > b[sortKey.value]) return 1 * modifier
-  //   return 0
-  // })
-
-  return result
+  const query = props.searchQuery.toLowerCase()
+  return utilities.filter((utility) => {
+    const matchesQuery =
+      !props.searchQuery ||
+      utility.title.toLowerCase().includes(query) ||
+      utility.description.toLowerCase().includes(query)
+    const matchesStatus = utilitiesByStatus.value === 'All' || utility.status === utilitiesByStatus.value
+    return matchesQuery && matchesStatus
+  })
 })
 
 // Theme Import
 // prettier-ignore
-import { File, MoreHorizontal, PlusCircle, Badge, Button, Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/addons/ThemeImport.vue'
+import { File, PlusCircle, Button, Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, Table, TableBody, TableHead, TableHeader, TableRow } from '@/components/addons/ThemeImport.vue'
 </script>
 
 <template>
