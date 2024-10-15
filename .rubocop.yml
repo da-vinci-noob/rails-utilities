@@ -118,8 +118,8 @@ Layout/EmptyLineAfterMultilineCondition:
   Enabled: true
 
 Layout/EmptyLinesAroundAccessModifier:
-  Enabled: false
-  # EnforcedStyle: only_before
+  Enabled: true
+  EnforcedStyle: around
 
 Layout/EmptyLinesAroundBlockBody:
   Enabled: true
