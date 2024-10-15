@@ -6,16 +6,10 @@ import Header from '@/components/addons/Header.vue'
 
 // Variables
 const route = useRoute()
-
-const test = ref('')
-const sortOrder = ref('asc')
-const sortKey = ref('name')
 const searchQuery = ref('')
 
-// Lifecycles
-// onMounted(() => {
-//   utilities.value = JSON.parse(home.dataset.utilities)
-// })
+// Computed property to determine if the current route is 'Home'
+const isHomeRoute = computed(() => route.name === 'Home')
 </script>
 
 <template>
@@ -24,7 +18,7 @@ const searchQuery = ref('')
       <Header @updateSearchQuery="(value) => (searchQuery = value)" />
       <main class="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
         <router-view v-slot="{ Component }">
-          <component :is="Component" v-bind="route.name === 'Home' ? { searchQuery } : {}" />
+          <component :is="Component" v-bind="isHomeRoute ? { searchQuery } : {}" />
         </router-view>
       </main>
     </div>
