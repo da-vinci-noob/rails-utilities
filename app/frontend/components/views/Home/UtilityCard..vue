@@ -4,12 +4,12 @@ import { format } from 'date-fns'
 
 // Variables
 const placeholder = ref('/placeholder.svg')
-defineProps(['utility'])
+const props = defineProps<{
+  utility: { title: string; icon: string; status: string; description: string; createdAt: Date }
+}>()
 
 // Functions
-const formattedDate = (date: Date) => {
-  return format(date, 'dd/MMM/yyyy')
-}
+const formattedDate = (date: Date) => format(date, 'dd/MMM/yyyy')
 
 const trimDescription = (description: string, maxLength: number = 100) =>
   description.length > maxLength ? `${description.slice(0, maxLength)}...` : description
@@ -25,26 +25,26 @@ import { MoreHorizontal, Badge, Button, DropdownMenu, DropdownMenuContent, Dropd
   <TableRow>
     <TableCell class="hidden sm:table-cell">
       <img
-        :alt="`${utility.title} icon`"
+        :alt="`${props.utility.title} icon`"
         class="aspect-square rounded-md object-cover"
         height="64"
-        :src="utility.icon || placeholder"
+        :src="props.utility.icon || placeholder"
         width="64"
       />
     </TableCell>
     <TableCell class="font-medium">
-      <router-link :to="titleToPath(utility.title)">{{ utility.title }}</router-link>
+      <router-link :to="titleToPath(props.utility.title)">{{ props.utility.title }}</router-link>
     </TableCell>
     <TableCell>
       <Badge variant="outline">
-        {{ utility.status }}
+        {{ props.utility.status }}
       </Badge>
     </TableCell>
     <TableCell class="hidden md:table-cell">
-      {{ trimDescription(utility.description) }}
+      {{ trimDescription(props.utility.description) }}
     </TableCell>
     <TableCell class="hidden md:table-cell whitespace-nowrap">
-      {{ formattedDate(utility.createdAt) }}
+      {{ formattedDate(props.utility.createdAt) }}
     </TableCell>
     <TableCell>
       <DropdownMenu>
