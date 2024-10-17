@@ -7,19 +7,17 @@ class ProcessController < ApplicationController
   def benchmark
     message1, message2 = benchmark_params.values_at(:message1, :message2)
 
-    begin
-      raise ArgumentError, 'Code Blocks cannot be empty' if message1.blank? || message2.blank?
+    raise ArgumentError, 'Code Blocks cannot be empty' if message1.blank? || message2.blank?
 
-      results = perform_benchmark(message1, message2)
-      render_success(results)
-    rescue ArgumentError => e
-      render_blank_message(e.message)
-    rescue SecurityError => e
-      my_logger.fatal e.inspect
-      display_security_message
-    rescue SyntaxError, StandardError => e
-      log_and_render_error(e)
-    end
+    results = perform_benchmark(message1, message2)
+    render_success(results)
+  rescue ArgumentError => e
+    render_blank_message(e.message)
+  rescue SecurityError => e
+    my_logger.fatal(e.inspect)
+    display_security_message
+  rescue SyntaxError, StandardError => e
+    log_and_render_error(e)
   end
 
   private
@@ -42,28 +40,29 @@ class ProcessController < ApplicationController
   end
 
   def render_success(results)
-    render json: {
-      code1:   {
-        cpu_time:  format('%.10f', results.first.utime),
-        real_time: format('%.10f', results.first.real)
-      },
-      code2:   {
-        cpu_time:  format('%.10f', results.last.utime),
-        real_time: format('%.10f', results.last.real)
-      },
-      success: true
-    }, status: :ok
+    render json: { code1: format_result(results.first), code2: format_result(results.last), success: true }, status: :ok
+  end
+
+  private
+
+  def format_result(result)
+    {
+      cpu_time:  format('%.10f', result.utime),
+      real_time: format('%.10f', result.real)
+    }
   end
 
   def render_blank_message(message)
-    render json: { success: false, message: }
+    render json: { success: false, message: '' }, status: :unprocessable_entity
   end
 
   # rubocop:disable Naming/MethodParameterName
   def log_and_render_error(e)
     my_logger.error e.inspect
-    render json:   { success: false, message: "Check your Code Block, #{e.class} - #{remove_not_needed_output(e.message)}" },
-           status: :unprocessable_entity
+    render json: {
+      success: false,
+      message: "Check your Code Block, #{e.class} - #{remove_not_needed_output(e.message)}"
+    }, status: :unprocessable_entity
   end
   # rubocop:enable Naming/MethodParameterName
 
