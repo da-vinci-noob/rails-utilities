@@ -50,4 +50,4 @@ jobs:
           bundler-cache: true
 
       - name: Run RSpec tests cases
-        run: bundle exec rspec spec
+        run: bundle exec rspec spec --format RSpec::Github::Formatter

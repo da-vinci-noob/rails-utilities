@@ -47,6 +47,10 @@ group :development do
   gem 'web-console'
 end
 
+group :test do
+  gem 'rspec-github', require: false
+end
+
 gem 'benchmark'
 gem 'vite_rails'
 gem 'net-smtp', github: 'ruby/net-smtp' # fix: github CI
