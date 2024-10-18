@@ -50,8 +50,8 @@ class ProcessController < ApplicationController
     }
   end
 
-  def render_blank_message(_message)
-    render json: { success: false, message: '' }, status: :unprocessable_entity
+  def render_blank_message(message)
+    render json: { success: false, message: }, status: :unprocessable_entity
   end
 
   # rubocop:disable Naming/MethodParameterName
