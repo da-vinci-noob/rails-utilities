@@ -7,7 +7,7 @@ RSpec.describe ProcessController do
     context 'with empty code blocks' do
       it 'raises ArgumentError' do
         params = { process: { message1: '', message2: '' } }
-        expected_json = { success: false, message: 'Code Blocks cannot be emptyX' }
+        expected_json = { success: false, message: 'Code Blocks cannot be empty' }
         post(:benchmark, params:)
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.parsed_body.symbolize_keys).to eq expected_json
