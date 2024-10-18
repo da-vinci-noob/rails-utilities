@@ -43,8 +43,6 @@ class ProcessController < ApplicationController
     render json: { code1: format_result(results.first), code2: format_result(results.last), success: true }, status: :ok
   end
 
-  private
-
   def format_result(result)
     {
       cpu_time:  format('%.10f', result.utime),
@@ -52,7 +50,7 @@ class ProcessController < ApplicationController
     }
   end
 
-  def render_blank_message(message)
+  def render_blank_message(_message)
     render json: { success: false, message: '' }, status: :unprocessable_entity
   end
 
