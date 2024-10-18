@@ -36,6 +36,10 @@ group :development, :test do
   gem 'rubocop-packaging', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
+  gem 'rubocop-rspec_rails', require: false
+  gem 'rspec-rails', '~> 7.0', '>= 7.0.1'
+  gem 'fuubar', '~> 2.5', '>= 2.5.1'
 end
 
 group :development do
