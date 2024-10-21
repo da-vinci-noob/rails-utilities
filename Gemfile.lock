@@ -103,7 +103,7 @@ GEM
     date (3.3.4)
     diff-lcs (1.5.1)
     drb (2.2.1)
-    dry-cli (1.1.0)
+    dry-cli (1.2.0)
     erubi (1.13.0)
     evalhook (0.6.0)
       partialruby (~> 0.3)
@@ -288,8 +288,8 @@ GEM
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.6.0)
     useragent (0.16.10)
-    vite_rails (3.0.17)
-      railties (>= 5.1, < 8)
+    vite_rails (3.0.18)
+      railties (>= 5.1, < 9)
       vite_ruby (~> 3.0, >= 3.2.2)
     vite_ruby (3.9.0)
       dry-cli (>= 0.7, < 2)
@@ -305,7 +305,7 @@ GEM
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    zeitwerk (2.7.0)
+    zeitwerk (2.7.1)
 
 PLATFORMS
   aarch64-linux
