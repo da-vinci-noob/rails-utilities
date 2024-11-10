@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Contains all the processes done for an utility
+# Contains all the processes done for a utility
 class ProcessController < ApplicationController
   include ProcessBenchmarkHelper
 
