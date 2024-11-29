@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/ruby/net-smtp.git
-  revision: 60df08b7e6f80375a3ccda2b28d3fdcfb711c359
+  revision: fe2635b28404cc5eeda9db48bec841a19c930b26
   specs:
     net-smtp (0.5.0)
       net-protocol
