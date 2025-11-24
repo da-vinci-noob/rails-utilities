@@ -9,7 +9,7 @@ RSpec.describe ProcessController do
         params = { process: { message1: '', message2: '' } }
         expected_json = { success: false, message: 'Code Blocks cannot be empty' }
         post(:benchmark, params:)
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
         expect(response.parsed_body.symbolize_keys).to eq expected_json
       end
     end
@@ -37,7 +37,7 @@ RSpec.describe ProcessController do
         params = { process: { message1: 'puts "hello', message2: 'invalid code' } }
         expected_json = { success: false, message: 'Check your Code Block, SyntaxError - compile error' }
         post(:benchmark, params:)
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
         expect(response.parsed_body.symbolize_keys).to eq(expected_json)
       end
     end
@@ -47,7 +47,7 @@ RSpec.describe ProcessController do
         params = { process: { message1: '"hello".test', message2: 'invalid code' } }
         expected_json = { success: false, message: 'Check your Code Block, NoMethodError - NoMethodError' }
         post(:benchmark, params:)
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
         expect(response.parsed_body.symbolize_keys).to eq(expected_json)
       end
     end
