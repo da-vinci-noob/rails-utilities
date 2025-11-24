@@ -18,7 +18,7 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: () => import('@/components/views/Home/Index.vue')
+    component: () => import('@/components/views/AllUtilities/Index.vue')
   },
   ...utilities.map((utility) => {
     const componentPath = getComponentPath(utility.title)
