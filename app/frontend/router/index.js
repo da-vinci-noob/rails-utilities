@@ -1,22 +1,38 @@
-import { createWebHistory, createRouter } from 'vue-router'
-
-import Home from '@/components/views/Home/Index.vue'
+import { createRouter, createWebHistory } from 'vue-router'
 import { utilities } from '@/data/utilities'
 
-const titleToPath = (title) => title.replace(/\s+/g, '_')
+function titleToPath(title) {
+  return title
+    .replace(/\//g, '-')
+    .replace(/\s+/g, '-')
+    .replace(/[^a-zA-Z0-9-]/g, '')
+    .toLowerCase()
+}
 
-const routes = utilities.map((utility) => ({
-  path: `/${titleToPath(utility.title).toLowerCase()}`,
-  name: utility.title,
-  meta: {
-    description: utility.description
+function getComponentPath(title) {
+  // Remove all non-alphanumeric characters for the folder name
+  return title.replace(/\//g, '').replace(/[^a-zA-Z0-9]/g, '')
+}
+
+const routes = [
+  {
+    path: '/',
+    name: 'Home',
+    component: () => import('@/components/views/Home/Index.vue')
   },
-  component: () => import(`@/components/views/${utility.title.replace(/\s+/g, '')}/Index.vue`) // Create New Component based on title without spaces
-}))
+  ...utilities.map((utility) => {
+    const componentPath = getComponentPath(utility.title)
+    return {
+      path: `/${titleToPath(utility.title)}`,
+      name: utility.title,
+      component: () => import(`@/components/views/${componentPath}/Index.vue`)
+    }
+  })
+]
 
-routes.push({ path: '/', name: 'Home', component: Home })
-
-export default createRouter({
+const router = createRouter({
   history: createWebHistory(),
   routes
 })
+
+export default router

@@ -55,7 +55,7 @@ const submitMessages = async () => {
     results.value = await response.json()
   } catch (error) {
     console.error('Error:', error)
-    errorMessage.value = error
+    errorMessage.value = error instanceof Error ? error.message : 'An error occurred'
   } finally {
     buttonActive.value = true
   }
