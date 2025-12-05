@@ -51,7 +51,7 @@ const isExpanded = (cat: string) => expandedCategories.value.has(cat)
   <aside class="hidden w-64 flex-col border-r bg-background text-foreground md:flex">
     <div class="p-4">
       <div class="flex items-center gap-2 font-semibold">
-        <span class="text-lg">DevUtils Clone</span>
+        <span class="text-lg">Rails Utilities</span>
       </div>
       <div class="mt-4 relative">
         <Search class="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />

@@ -1,57 +1,39 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
-import { Textarea } from '@/components/ui/textarea'
+import { TextTransformLayout } from '@/components/ui/text-transform-layout'
 import { Button } from '@/components/ui/button'
-import { Label } from '@/components/ui/label'
-import { Copy, ArrowRight } from 'lucide-vue-next'
+import { ArrowRight } from 'lucide-vue-next'
 import Papa from 'papaparse'
 
-const inputCsv = ref('name,age\nJohn,30\nJane,25')
-const outputJson = ref('')
+const input = ref('name,age\nJohn,30\nJane,25')
+const output = ref('')
 const error = ref('')
 
 const convert = () => {
   error.value = ''
   try {
-    const result = Papa.parse(inputCsv.value, { header: true })
-    outputJson.value = JSON.stringify(result.data, null, 2)
+    const result = Papa.parse(input.value, { header: true })
+    output.value = JSON.stringify(result.data, null, 2)
   } catch (e: any) {
     error.value = e.message
   }
 }
-
-const copyToClipboard = () => {
-  navigator.clipboard.writeText(outputJson.value)
-}
 </script>
 
 <template>
-  <div class="p-4 h-[calc(100vh-4rem)] flex flex-col">
-    <div class="flex gap-4 mb-4">
+  <TextTransformLayout
+    v-model:input="input"
+    v-model:output="output"
+    input-label="Input CSV"
+    output-label="Output JSON"
+    input-placeholder="Paste CSV here..."
+    :error="error"
+  >
+    <template #toolbar>
       <Button @click="convert">
         <ArrowRight class="mr-2 h-4 w-4" />
         Convert
       </Button>
-    </div>
-    <div class="grid md:grid-cols-2 gap-4 flex-1 min-h-0">
-      <div class="flex flex-col gap-2 min-h-0">
-        <Label>Input CSV</Label>
-        <Textarea v-model="inputCsv" placeholder="Paste CSV here..." class="flex-1 font-mono resize-none" />
-      </div>
-      <div class="flex flex-col gap-2 min-h-0">
-        <div class="flex justify-between items-center">
-          <Label>Output JSON</Label>
-          <Button variant="ghost" size="sm" @click="copyToClipboard" :disabled="!outputJson">
-            <Copy class="h-4 w-4 mr-2" />
-            Copy
-          </Button>
-        </div>
-        <Textarea v-model="outputJson" readonly placeholder="Result..." class="flex-1 font-mono resize-none bg-muted" />
-      </div>
-    </div>
-    <div v-if="error" class="mt-4 p-4 bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300 rounded-md">
-      {{ error }}
-    </div>
-  </div>
+    </template>
+  </TextTransformLayout>
 </template>
