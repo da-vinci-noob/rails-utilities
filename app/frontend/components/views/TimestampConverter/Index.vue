@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useCopy } from '@/lib/useCopy'
+import SavedSnippets from '@/components/addons/SavedSnippets.vue'
 import { shareUrl } from '@/lib/shareUrl'
 
 const timestamp = ref('')
@@ -73,6 +74,7 @@ onMounted(() => {
 
 <template>
   <div class="mx-auto max-w-4xl space-y-4 p-4">
+    <SavedSnippets tool="Timestamp Converter" :input="timestamp" :output="dateResult?.iso ?? ''" @load="timestamp = $event.input" />
     <Card>
       <CardHeader><CardTitle>Unix timestamp converter</CardTitle></CardHeader>
       <CardContent class="space-y-5">

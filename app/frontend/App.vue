@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Header from '@/components/addons/Header.vue'
 import Sidebar from '@/components/addons/Sidebar.vue'
+import WorkspaceOnboarding from '@/components/addons/WorkspaceOnboarding.vue'
 </script>
 
 <template>
@@ -15,4 +16,5 @@ import Sidebar from '@/components/addons/Sidebar.vue'
       </main>
     </div>
   </div>
+  <WorkspaceOnboarding />
 </template>

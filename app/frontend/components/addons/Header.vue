@@ -4,6 +4,7 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import DarkMode from '@/components/addons/DarkMode.vue'
 import SearchBar from '@/components/addons/CommandPalette.vue'
+import MobileNav from '@/components/addons/MobileNav.vue'
 
 // Variables
 const route = useRoute()
@@ -20,7 +21,9 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbS
 
 <template>
     <header class="sticky top-0 z-30 grid h-16 grid-cols-[1fr_auto_1fr] items-center border-b bg-background px-4 sm:static sm:border-0 sm:bg-transparent sm:px-6">
-      <Breadcrumb class="min-w-0 md:flex">
+      <div class="flex items-center gap-3">
+        <MobileNav />
+        <Breadcrumb class="hidden min-w-0 md:flex">
         <BreadcrumbList class="truncate">
           <BreadcrumbItem>
             <BreadcrumbLink as-child>
@@ -34,7 +37,8 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbS
             </BreadcrumbLink>
           </BreadcrumbItem>
         </BreadcrumbList>
-      </Breadcrumb>
+        </Breadcrumb>
+      </div>
       <div class="justify-self-center">
         <SearchBar />
       </div>

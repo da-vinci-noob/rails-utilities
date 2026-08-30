@@ -4,9 +4,11 @@ import { utilities } from '@/data/utilities'
 import { titleToPath } from '@/lib/routes'
 import { getRecents, clearRecents } from '@/lib/recents'
 import { getPinned, togglePinned } from '@/lib/pins'
+import { exportWorkspace, importWorkspace } from '@/lib/workspace'
+import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
-import { History, Pin, Search, X } from 'lucide-vue-next'
+import { History, Pin, Search, Upload, Download, X } from 'lucide-vue-next'
 
 const searchQuery = ref('')
 const recents = ref(getRecents())
@@ -31,6 +33,28 @@ function onClearRecents() {
 function onTogglePin(title: string) {
   togglePinned(title)
   pinned.value = getPinned()
+}
+
+const backupInput = ref<HTMLInputElement | null>(null)
+const backupMessage = ref('')
+
+function downloadBackup() {
+  const blob = new Blob([exportWorkspace()], { type: 'application/json' })
+  const url = URL.createObjectURL(blob)
+  const link = document.createElement('a')
+  link.href = url
+  link.download = `rails-utilities-backup-${new Date().toISOString().slice(0, 10)}.json`
+  link.click()
+  URL.revokeObjectURL(url)
+  backupMessage.value = 'Workspace backup downloaded.'
+}
+
+async function restoreBackup(event: Event) {
+  const file = (event.target as HTMLInputElement).files?.[0]
+  if (!file) return
+  backupMessage.value = importWorkspace(await file.text()) ? 'Workspace restored. Refreshing…' : 'Invalid workspace backup.'
+  if (backupMessage.value.startsWith('Workspace restored')) window.setTimeout(() => window.location.reload(), 500)
+  ;(event.target as HTMLInputElement).value = ''
 }
 
 
@@ -67,6 +91,12 @@ const getGradient = (title: string) => {
           <span class="rounded-full border bg-background/70 px-3 py-1.5">{{ filteredUtilities.length }} tools</span>
           <span class="rounded-full border bg-background/70 px-3 py-1.5">Private by default</span>
           <span class="rounded-full border bg-background/70 px-3 py-1.5">No setup required</span>
+        </div>
+        <div class="mt-6 flex flex-wrap items-center gap-2">
+          <Button size="sm" variant="secondary" @click="downloadBackup"><Download class="mr-2 h-4 w-4" />Export workspace</Button>
+          <Button size="sm" variant="outline" @click="backupInput?.click()"><Upload class="mr-2 h-4 w-4" />Import workspace</Button>
+          <input ref="backupInput" type="file" accept="application/json" class="hidden" @change="restoreBackup" />
+          <span v-if="backupMessage" class="text-xs text-muted-foreground">{{ backupMessage }}</span>
         </div>
       </div>
       <div class="pointer-events-none absolute -right-16 -top-24 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />

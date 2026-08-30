@@ -3,7 +3,7 @@ import { computed, ref, watch } from 'vue'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
+import SavedSnippets from '@/components/addons/SavedSnippets.vue'
 
 const definitions = {
   Length: { m: 1, km: 1000, cm: 0.01, mm: 0.001, mi: 1609.344, ft: 0.3048, in: 0.0254 },
@@ -72,7 +72,8 @@ updateFrom()
 </script>
 
 <template>
-  <div class="mx-auto max-w-3xl p-4">
+  <div class="mx-auto max-w-3xl space-y-4 p-4">
+    <SavedSnippets tool="Unit Converter" :input="`${fromValue} ${fromUnit}`" :output="`${toValue} ${toUnit}`" @load="fromValue = $event.input.split(' ')[0] ?? fromValue" />
     <Card>
       <CardHeader><CardTitle>Unit converter</CardTitle></CardHeader>
       <CardContent class="space-y-5">
