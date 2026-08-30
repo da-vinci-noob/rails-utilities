@@ -3,16 +3,12 @@
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import DarkMode from '@/components/addons/DarkMode.vue'
-import SearchBar from '@/components/addons/SearchBar.vue'
+import SearchBar from '@/components/addons/CommandPalette.vue'
 
 // Variables
 const route = useRoute()
 
 // Emits
-const emit = defineEmits(['updateSearchQuery'])
-const handleSearchQueryUpdate = (value: string) => {
-  emit('updateSearchQuery', value)
-}
 
 // Lifecycle Hooks
 const currentRoute = computed(() => ({ name: route.name, path: route.path, description: route.meta?.description }))
@@ -42,7 +38,7 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbS
       </BreadcrumbList>
     </Breadcrumb>
     <div class="relative ml-auto flex-1 md:grow-0">
-      <SearchBar @updateSearchQuery="handleSearchQueryUpdate" v-if="currentRoute.name == 'Home'" />
+      <SearchBar v-if="currentRoute.name == 'Home'" />
     </div>
     <DarkMode />
   </header>

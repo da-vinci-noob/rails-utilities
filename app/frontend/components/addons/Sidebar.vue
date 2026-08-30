@@ -2,29 +2,20 @@
 import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { utilities, categories } from '@/data/utilities'
-import { Input } from '@/components/ui/input'
-import { Search, ChevronDown, ChevronRight } from 'lucide-vue-next'
+import { ChevronDown, ChevronRight } from 'lucide-vue-next'
 
 const route = useRoute()
-const searchQuery = ref('')
 const expandedCategories = ref<Set<string>>(new Set(categories.filter((c) => c !== 'All')))
-
-const filteredUtilities = computed(() => {
-  if (!searchQuery.value) return utilities
-  const query = searchQuery.value.toLowerCase()
-  return utilities.filter(
-    (utility) => utility.title.toLowerCase().includes(query) || utility.description.toLowerCase().includes(query)
-  )
-})
 
 const groupedUtilities = computed(() => {
   const groups: Record<string, typeof utilities> = {}
   for (const cat of categories) {
     if (cat === 'All') continue
-    groups[cat] = filteredUtilities.value.filter((u) => u.category === cat)
+    groups[cat] = utilities.filter((u) => u.category === cat)
   }
   return groups
 })
+
 
 const isActive = (pathName: string) => route.name === pathName
 
@@ -49,14 +40,11 @@ const isExpanded = (cat: string) => expandedCategories.value.has(cat)
 
 <template>
   <aside class="hidden w-64 flex-col border-r bg-background text-foreground md:flex">
-    <div class="p-4">
+    <div class="border-b p-4">
       <div class="flex items-center gap-2 font-semibold">
         <span class="text-lg">Rails Utilities</span>
       </div>
-      <div class="mt-4 relative">
-        <Search class="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
-        <Input v-model="searchQuery" placeholder="Search utilities..." class="pl-8 bg-background text-foreground" />
-      </div>
+      <p class="mt-1 text-xs text-muted-foreground">Choose a tool or open Command Center</p>
     </div>
     <div class="flex-1 overflow-auto py-2">
       <nav class="grid gap-1 px-2">
@@ -83,7 +71,7 @@ const isExpanded = (cat: string) => expandedCategories.value.has(cat)
             </div>
           </div>
         </template>
-        <div v-if="filteredUtilities.length === 0" class="px-3 py-2 text-sm text-muted-foreground">
+        <div v-if="Object.values(groupedUtilities).every((items) => items.length === 0)" class="px-3 py-2 text-sm text-muted-foreground">
           No utilities found.
         </div>
       </nav>

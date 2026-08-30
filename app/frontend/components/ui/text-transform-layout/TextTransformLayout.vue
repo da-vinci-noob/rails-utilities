@@ -2,7 +2,8 @@
 import { Textarea } from '@/components/ui/textarea'
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
-import { Copy } from 'lucide-vue-next'
+import { Copy, Check } from 'lucide-vue-next'
+import { useCopy } from '@/lib/useCopy'
 
 interface Props {
   inputLabel?: string
@@ -25,9 +26,8 @@ const props = withDefaults(defineProps<Props>(), {
 const input = defineModel<string>('input', { default: '' })
 const output = defineModel<string>('output', { default: '' })
 
-const copyToClipboard = () => {
-  navigator.clipboard.writeText(output.value)
-}
+const { state, copy } = useCopy()
+const copyToClipboard = () => copy(output.value)
 </script>
 
 <template>
@@ -48,8 +48,9 @@ const copyToClipboard = () => {
             {{ outputLabel }}
           </Button>
           <Button v-if="showCopyButton" variant="outline" size="sm" @click="copyToClipboard" :disabled="!output">
-            <Copy class="h-4 w-4 mr-2" />
-            Copy
+            <Check v-if="state === 'copied'" class="h-4 w-4 mr-2 text-green-600" />
+            <Copy v-else class="h-4 w-4 mr-2" />
+            {{ state === 'copied' ? 'Copied!' : 'Copy' }}
           </Button>
         </div>
         <Textarea

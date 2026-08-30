@@ -1,19 +1,16 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { utilities } from '@/data/utilities'
+import { titleToPath } from '@/lib/routes'
+import { getRecents, clearRecents } from '@/lib/recents'
+import { getPinned, togglePinned } from '@/lib/pins'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { Search } from 'lucide-vue-next'
+import { History, Pin, Search, X } from 'lucide-vue-next'
 
 const searchQuery = ref('')
-
-const titleToPath = (title: string) =>
-  `/${title
-    .replace(/\//g, '-')
-    .replace(/\s+/g, '-')
-    .replace(/[^a-zA-Z0-9-]/g, '')
-    .toLowerCase()}`
+const recents = ref(getRecents())
+const pinned = ref(getPinned())
 
 const filteredUtilities = computed(() => {
   const list = utilities.filter((u) => u.title !== 'All Utilities')
@@ -21,6 +18,17 @@ const filteredUtilities = computed(() => {
   const query = searchQuery.value.toLowerCase()
   return list.filter((u) => u.title.toLowerCase().includes(query) || u.description.toLowerCase().includes(query))
 })
+
+function onClearRecents() {
+  clearRecents()
+  recents.value = []
+}
+
+function onTogglePin(title: string) {
+  togglePinned(title)
+  pinned.value = getPinned()
+}
+
 
 // Generate a consistent color based on utility title
 const getGradient = (title: string) => {
@@ -46,6 +54,27 @@ const getGradient = (title: string) => {
 
 <template>
   <div class="p-4 space-y-6">
+    <Card v-if="recents.length">
+      <CardHeader>
+        <div class="flex items-center justify-between">
+          <CardTitle class="flex items-center gap-2 text-base"><History class="h-4 w-4" /> Recently used</CardTitle>
+          <button class="text-xs text-muted-foreground hover:text-foreground" @click="onClearRecents">
+            <X class="mr-1 inline h-3 w-3" />Clear
+          </button>
+        </div>
+      </CardHeader>
+      <CardContent class="flex flex-wrap gap-2">
+        <router-link
+          v-for="entry in recents"
+          :key="entry.title"
+          :to="entry.path"
+          class="rounded-full border bg-muted px-3 py-1 text-sm hover:border-primary hover:text-primary"
+        >
+          {{ entry.title }}
+        </router-link>
+      </CardContent>
+    </Card>
+
     <Card>
       <CardHeader>
         <CardTitle>All Utilities Gallery</CardTitle>
@@ -61,24 +90,23 @@ const getGradient = (title: string) => {
           <router-link
             v-for="utility in filteredUtilities"
             :key="utility.id"
-            :to="titleToPath(utility.title)"
+            :to="`/${titleToPath(utility.title)}`"
             class="group"
           >
             <div class="rounded-lg overflow-hidden border border-border hover:border-primary transition-colors">
-              <!-- Preview area with gradient -->
-              <div :class="['h-24 bg-gradient-to-br flex items-center justify-center', getGradient(utility.title)]">
-                <span class="text-white text-2xl font-bold opacity-80">
-                  {{ utility.title.charAt(0) }}
-                </span>
+              <div :class="['relative h-24 bg-gradient-to-br flex items-center justify-center', getGradient(utility.title)]">
+                <span class="text-white text-2xl font-bold opacity-80">{{ utility.title.charAt(0) }}</span>
+                <button
+                  class="absolute right-2 top-2 rounded-full bg-black/25 p-1 text-white hover:bg-black/50"
+                  :aria-label="pinned.includes(utility.title) ? 'Unpin utility' : 'Pin utility'"
+                  @click.prevent="onTogglePin(utility.title)"
+                >
+                  <Pin class="h-4 w-4" :class="pinned.includes(utility.title) ? 'fill-current' : ''" />
+                </button>
               </div>
-              <!-- Title and description -->
               <div class="p-3 bg-card">
-                <h3 class="font-medium text-sm truncate group-hover:text-primary transition-colors">
-                  {{ utility.title }}
-                </h3>
-                <p class="text-xs text-muted-foreground truncate mt-1">
-                  {{ utility.description }}
-                </p>
+                <h3 class="font-medium text-sm truncate group-hover:text-primary transition-colors">{{ utility.title }}</h3>
+                <p class="text-xs text-muted-foreground truncate mt-1">{{ utility.description }}</p>
               </div>
             </div>
           </router-link>

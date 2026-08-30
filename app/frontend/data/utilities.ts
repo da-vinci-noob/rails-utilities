@@ -526,5 +526,41 @@ export const utilities: Utility[] = [
     status: 'Stable',
     category: 'Crypto & Security',
     createdAt: new Date('2024-11-25')
+  },
+  {
+    id: 57,
+    title: 'Timestamp Converter',
+    description: 'Convert Unix timestamps to dates and back',
+    icon: 'https://api.iconify.design/lucide:clock.svg',
+    status: 'Stable',
+    category: 'Converters',
+    createdAt: new Date('2024-11-25')
+  },
+  {
+    id: 58,
+    title: 'Password Strength',
+    description: 'Analyze password strength',
+    icon: 'https://api.iconify.design/lucide:key-round.svg',
+    status: 'Stable',
+    category: 'Crypto & Security',
+    createdAt: new Date('2024-11-25')
+  },
+  {
+    id: 59,
+    title: 'Pomodoro Timer',
+    description: 'Focus with timed work and break sessions',
+    icon: 'https://api.iconify.design/lucide:timer.svg',
+    status: 'Stable',
+    category: 'Misc',
+    createdAt: new Date('2024-11-25')
+  },
+  {
+    id: 60,
+    title: 'Unit Converter',
+    description: 'Convert length, mass, temperature, and data units',
+    icon: 'https://api.iconify.design/lucide:ruler.svg',
+    status: 'Stable',
+    category: 'Converters',
+    createdAt: new Date('2024-11-25')
   }
 ]

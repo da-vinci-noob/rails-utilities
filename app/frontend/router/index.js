@@ -1,18 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { utilities } from '@/data/utilities'
-
-function titleToPath(title) {
-  return title
-    .replace(/\//g, '-')
-    .replace(/\s+/g, '-')
-    .replace(/[^a-zA-Z0-9-]/g, '')
-    .toLowerCase()
-}
-
-function getComponentPath(title) {
-  // Remove all non-alphanumeric characters for the folder name
-  return title.replace(/\//g, '').replace(/[^a-zA-Z0-9]/g, '')
-}
+import { titleToPath, getComponentPath } from '@/lib/routes'
+import { recordVisit } from '@/lib/recents'
 
 const routes = [
   {
@@ -33,6 +22,10 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes
+})
+
+router.afterEach((to) => {
+  if (to.name && to.name !== 'Home') recordVisit(String(to.name))
 })
 
 export default router
