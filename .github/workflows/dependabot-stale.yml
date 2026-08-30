@@ -1,0 +1,51 @@
+name: Dependabot auto-close stale
+on:
+  schedule:
+    - cron: "0 9 * * 1" # weekly, Monday 09:00 UTC
+  workflow_dispatch:
+
+jobs:
+  close-stale:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - run: bundle install
+      - name: Close Dependabot PRs that are already satisfied
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          ruby <<'RUBY'
+            require "open3"
+            require "bundler"
+
+            repo = "da-vinci-noob/rails-utilities"
+            # Parse the installed bundle: gem name -> Gem::Version
+            installed = {}
+            Bundler.locked_gems.specs.each { |spec| installed[spec.name] = spec.version }
+
+            out, = Open3.capture2("gh", "pr", "list", "--repo", repo, "--state", "open",
+                                  "--author", "app/dependabot",
+                                  "--json", "number,title",
+                                  "--jq", ".[] | \"\\(.number)\\t\\(.title)\"")
+            closed = 0
+            out.each_line do |line|
+              number, title = line.chomp.split("\t", 2)
+              m = title.match(/bump (\S+) from \S+ to ([0-9][0-9A-Za-z.\-]*)/)
+              next unless m
+              gem, target = m[1], m[2]
+              # Group-scoped gems (e.g. rails) use an exact spec name; fall back to prefix match.
+              spec = installed.keys.find { |k| k == gem } || installed.keys.find { |k| k.start_with?("#{gem} ") }
+              next unless spec
+              next unless installed[spec] >= Gem::Version.new(target)
+              system("gh", "pr", "close", number, "--repo", repo,
+                     "--comment", "Auto-closed: installed #{gem} #{installed[spec]} already satisfies this bump to #{target}.")
+              closed += 1
+            end
+            puts "Closed #{closed} stale Dependabot PR(s)."
+          RUBY
