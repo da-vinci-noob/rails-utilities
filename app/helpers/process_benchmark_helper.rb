@@ -36,15 +36,13 @@ module ProcessBenchmarkHelper
     render json: { success: false, message: }, status: :unprocessable_entity
   end
 
-  # rubocop:disable Naming/MethodParameterName
-  def log_and_render_error(e)
-    my_logger.error e.inspect
+  def log_and_render_error(error)
+    my_logger.error error.inspect
     render json: {
       success: false,
-      message: "Check your Code Block, #{e.class} - #{remove_not_needed_output(e.message)}"
+      message: "Check your Code Block, #{error.class} - #{remove_not_needed_output(error.message)}"
     }, status: :unprocessable_entity
   end
-  # rubocop:enable Naming/MethodParameterName
 
   def render_security_message
     render json: {
