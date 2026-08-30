@@ -5,7 +5,7 @@ import vue from '@vitejs/plugin-vue'
 import FullReload from 'vite-plugin-full-reload'
 
 const aliases = {
-  '/@/': path.resolve(__dirname, './app/frontend') // Replace 'src' with your actual source directory
+  '/@/': path.resolve(import.meta.dirname, './app/frontend') // Replace 'src' with your actual source directory
 }
 
 export default defineConfig({

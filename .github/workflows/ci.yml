@@ -34,6 +34,20 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Install JavaScript dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Build frontend
+        run: bunx vite build
+
       - name: Lint code for consistent style
         run: bin/rubocop -f github
 
