@@ -1,6 +1,6 @@
 # 🛠️ Rails Utilities: Collection of Utilities
 
-> A comprehensive collection of **56 developer utilities** built with Rails 7, Vue 3, and TailwindCSS. All tools run client-side in the browser for privacy and speed.
+> A comprehensive collection of **60 developer utilities** built with Rails 8, Vue 3, and TailwindCSS 4. All tools run client-side in the browser for privacy and speed.
 
 ![Vue 3](https://img.shields.io/badge/vue-3-42b883?style=for-the-badge&logo=vue.js)
 ![Rails 8](https://img.shields.io/badge/rails-8-cc0000?style=for-the-badge&logo=ruby-on-rails)
@@ -12,7 +12,11 @@
 
 - 🔒 **Privacy-first** - All utilities run client-side, your data never leaves your browser
 - 🎨 **Dark Mode** - Beautiful dark theme by default
-- 🔍 **Searchable** - Quickly find utilities with instant search
+- ⌨️ **Command Center** - Launch any utility instantly with `Ctrl/⌘ + K`
+- 📌 **Pinned & Recent** - Pin favorite tools and jump back to recently used ones
+- 🧩 **Saved Snippets & History** - Save inputs per tool, with automatic recent history
+- 💾 **Workspace Backup** - Export and import snippets, history, and preferences as JSON
+- 🚀 **Onboarding** - Personalize your dashboard with your favorite categories on first run
 - 📂 **Categorized** - Utilities organized in collapsible categories
 - 📱 **Responsive** - Works on desktop, tablet, and mobile
 - ⚡ **Fast** - No server round-trips for most operations
@@ -40,13 +44,13 @@ bin/dev
 
 - **Ruby on Rails 8** - Backend framework
 - **Vue 3 + TypeScript** - Frontend framework
-- **TailwindCSS** - Styling
+- **TailwindCSS 4** - Styling
 - **shadcn/ui** - UI components
 - **Vite** - Build tool
 
 ---
 
-## 🧰 Utilities (56 Total)
+## 🧰 Utilities (60 Total)
 
 ### 🔐 Encoders/Decoders (6)
 
@@ -69,7 +73,7 @@ bin/dev
 - **XML Beautify/Minify** - Beautify or minify XML code
 - **SQL Formatter** - Format SQL queries
 
-### 🔄 Converters (14)
+### 🔄 Converters (16)
 
 - **Unix Time Converter** - Convert Unix timestamp to date and vice versa
 - **YAML to JSON** - Convert YAML to JSON
@@ -85,6 +89,8 @@ bin/dev
 - **SVG to CSS** - Convert SVG to CSS background
 - **cURL to Code** - Convert cURL to code snippets
 - **JSON to Code** - Convert JSON to code structs
+- **Timestamp Converter** - Convert Unix timestamps to dates and back
+- **Unit Converter** - Convert length, mass, temperature, and data units
 
 ### 🎲 Generators (6)
 
@@ -95,12 +101,13 @@ bin/dev
 - **File Generator** - Generate dummy files
 - **Secret Generator** - Generate secure secrets
 
-### 🔑 Crypto & Security (5)
+### 🔑 Crypto & Security (6)
 
 - **JWT Debugger** - Decode and debug JWT tokens
 - **Hash Generator** - Generate various hashes (MD5, SHA-1, SHA-256, etc.)
 - **Certificate Decoder (X.509)** - Decode X.509 certificates
 - **Key Pair Generator** - Generate RSA/ECDSA public/private key pairs
+- **Password Strength** - Analyze password strength and estimate crack time
 
 ### 🖼️ Image Tools (3)
 
@@ -129,10 +136,26 @@ bin/dev
 
 ### 📦 Misc (4)
 
-- **All Utilities** - Browse all utilities in a gallery view
 - **HTML Preview** - Live preview HTML code
 - **Markdown Preview** - Live preview Markdown content
 - **Compression Tools** - Gzip compress and decompress data
+- **Pomodoro Timer** - Focus with timed work and break sessions
+
+---
+
+## 🧠 Workspace Features
+
+Beyond the tools themselves, the app remembers how you work:
+
+- **Command Center** (`Ctrl/⌘ + K`) - Fuzzy search by name, description, or category; recently used tools rank first.
+- **Pinned tools** - Pin any utility from the dashboard gallery; filter to pinned-only.
+- **Recently used** - Automatically tracked and shown on the dashboard.
+- **Saved snippets** - Named, per-tool snapshots of inputs and outputs (JSON Format/Validate, Timestamp Converter, Unit Converter).
+- **Recent history** - Each integrated tool keeps the last 20 inputs for instant restore.
+- **Workspace backup** - Export all snippets, history, and preferences to a JSON file, and import them on any device.
+- **First-run onboarding** - Pick your favorite categories once; the dashboard pins suggested tools for you.
+
+All workspace data lives in `localStorage` — nothing is uploaded, no account needed.
 
 ---
 
