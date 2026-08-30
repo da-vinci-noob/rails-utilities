@@ -50,6 +50,14 @@ bin/dev
 
 ---
 
+## 🖼️ Screenshots
+
+| Dashboard | Command Center |
+|-----------|----------------|
+| ![Dashboard](docs/screenshots/dashboard.png) | ![Command Center](docs/screenshots/command-center.png) |
+
+---
+
 ## 🧰 Utilities (60 Total)
 
 ### 🔐 Encoders/Decoders (6)
