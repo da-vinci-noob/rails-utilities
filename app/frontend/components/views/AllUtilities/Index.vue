@@ -53,7 +53,20 @@ const getGradient = (title: string) => {
 </script>
 
 <template>
-  <div class="p-4 space-y-6">
+  <div class="mx-auto w-full max-w-[1600px] space-y-6 p-4 sm:p-6 lg:p-8">
+    <section class="relative overflow-hidden rounded-2xl border bg-gradient-to-br from-primary/[0.08] via-card to-card px-6 py-8 sm:px-8 sm:py-10">
+      <div class="relative z-10 max-w-2xl">
+        <p class="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary">Your everyday toolkit</p>
+        <h1 class="text-3xl font-semibold tracking-tight sm:text-4xl">Small tools. Less friction.</h1>
+        <p class="mt-3 max-w-xl text-sm leading-6 text-muted-foreground sm:text-base">Format, convert, inspect, and generate without leaving your workflow. Everything runs locally in your browser.</p>
+        <div class="mt-6 flex flex-wrap gap-2 text-xs text-muted-foreground">
+          <span class="rounded-full border bg-background/70 px-3 py-1.5">{{ filteredUtilities.length }} tools</span>
+          <span class="rounded-full border bg-background/70 px-3 py-1.5">Private by default</span>
+          <span class="rounded-full border bg-background/70 px-3 py-1.5">No setup required</span>
+        </div>
+      </div>
+      <div class="pointer-events-none absolute -right-16 -top-24 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
+    </section>
     <Card v-if="recents.length">
       <CardHeader>
         <div class="flex items-center justify-between">
