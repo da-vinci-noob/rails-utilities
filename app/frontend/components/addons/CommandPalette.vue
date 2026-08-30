@@ -62,7 +62,7 @@ onUnmounted(() => window.removeEventListener('keydown', onKeydown))
 
 <template>
   <button
-    class="group ml-auto flex items-center gap-2 rounded-lg border border-primary/30 bg-primary/5 px-3 py-2 text-sm font-medium text-foreground shadow-sm transition hover:border-primary hover:bg-primary/10"
+    class="group flex min-w-[11rem] items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-primary/30 bg-primary/5 px-4 py-2 text-sm font-medium text-foreground shadow-sm transition hover:border-primary hover:bg-primary/10"
     aria-label="Open Command Center"
     @click="toggle"
   >
