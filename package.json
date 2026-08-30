@@ -5,7 +5,7 @@
     "@iconify-json/radix-icons": "^1.2.6",
     "@iconify/vue": "^4.3.0",
     "@types/crypto-js": "^4.2.2",
-    "@types/node": "^22.20.1",
+    "@types/node": "^26.4.0",
     "@vitejs/plugin-vue": "^5.2.4",
     "date-fns": "^4.4.0",
     "prettier": "^3.9.6",
