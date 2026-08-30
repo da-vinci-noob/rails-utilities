@@ -11,9 +11,13 @@ import { History, Pin, Search, X } from 'lucide-vue-next'
 const searchQuery = ref('')
 const recents = ref(getRecents())
 const pinned = ref(getPinned())
+const showPinnedOnly = ref(false)
+
+const pinnedUtilities = computed(() => utilities.filter((utility) => pinned.value.includes(utility.title)))
 
 const filteredUtilities = computed(() => {
-  const list = utilities.filter((u) => u.title !== 'All Utilities')
+  let list = utilities.filter((u) => u.title !== 'All Utilities')
+  if (showPinnedOnly.value) list = list.filter((u) => pinned.value.includes(u.title))
   if (!searchQuery.value) return list
   const query = searchQuery.value.toLowerCase()
   return list.filter((u) => u.title.toLowerCase().includes(query) || u.description.toLowerCase().includes(query))
@@ -67,22 +71,30 @@ const getGradient = (title: string) => {
       </div>
       <div class="pointer-events-none absolute -right-16 -top-24 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
     </section>
-    <Card v-if="recents.length">
+    <Card v-if="pinnedUtilities.length">
       <CardHeader>
         <div class="flex items-center justify-between">
-          <CardTitle class="flex items-center gap-2 text-base"><History class="h-4 w-4" /> Recently used</CardTitle>
-          <button class="text-xs text-muted-foreground hover:text-foreground" @click="onClearRecents">
-            <X class="mr-1 inline h-3 w-3" />Clear
+          <CardTitle class="flex items-center gap-2 text-base"><Pin class="h-4 w-4" /> Pinned tools</CardTitle>
+          <button class="text-xs text-muted-foreground hover:text-foreground" @click="showPinnedOnly = !showPinnedOnly">
+            {{ showPinnedOnly ? 'Show all tools' : 'View pinned only' }}
           </button>
         </div>
       </CardHeader>
       <CardContent class="flex flex-wrap gap-2">
-        <router-link
-          v-for="entry in recents"
-          :key="entry.title"
-          :to="entry.path"
-          class="rounded-full border bg-muted px-3 py-1 text-sm hover:border-primary hover:text-primary"
-        >
+        <router-link v-for="utility in pinnedUtilities" :key="utility.id" :to="`/${titleToPath(utility.title)}`" class="rounded-full border border-primary/30 bg-primary/5 px-3 py-1 text-sm hover:border-primary hover:text-primary">
+          {{ utility.title }}
+        </router-link>
+      </CardContent>
+    </Card>
+    <Card v-if="recents.length">
+      <CardHeader>
+        <div class="flex items-center justify-between">
+          <CardTitle class="flex items-center gap-2 text-base"><History class="h-4 w-4" /> Recently used</CardTitle>
+          <button class="text-xs text-muted-foreground hover:text-foreground" @click="onClearRecents"><X class="mr-1 inline h-3 w-3" />Clear</button>
+        </div>
+      </CardHeader>
+      <CardContent class="flex flex-wrap gap-2">
+        <router-link v-for="entry in recents" :key="entry.title" :to="entry.path" class="rounded-full border bg-muted px-3 py-1 text-sm hover:border-primary hover:text-primary">
           {{ entry.title }}
         </router-link>
       </CardContent>
@@ -91,7 +103,7 @@ const getGradient = (title: string) => {
     <Card>
       <CardHeader>
         <CardTitle>All Utilities Gallery</CardTitle>
-        <CardDescription>Browse and navigate to all {{ filteredUtilities.length }} utilities</CardDescription>
+        <CardDescription>{{ showPinnedOnly ? 'Your pinned tools' : 'Browse and navigate to all' }} {{ filteredUtilities.length }} utilities</CardDescription>
       </CardHeader>
       <CardContent class="space-y-4">
         <div class="relative">
