@@ -38,7 +38,7 @@ group :development, :test do
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   gem 'rubocop-rspec_rails', require: false
-  gem 'rspec-rails', '~> 7.0', '>= 7.0.1'
+  gem 'rspec-rails', '~> 8.0'
   gem 'fuubar', '~> 2.5', '>= 2.5.1'
 end
 
