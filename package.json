@@ -29,7 +29,7 @@
     "js-beautify": "^1.15.4",
     "js-yaml": "^4.3.2",
     "jwt-decode": "^4.0.0",
-    "lorem-ipsum": "^2.0.10",
+    "lorem-ipsum": "^3.0.0",
     "lucide-vue-next": "^0.451.0",
     "marked": "^17.0.6",
     "papaparse": "^5.7.0",
