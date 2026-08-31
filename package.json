@@ -31,7 +31,7 @@
     "jwt-decode": "^4.0.0",
     "lorem-ipsum": "^2.0.10",
     "lucide-vue-next": "^0.451.0",
-    "marked": "^17.0.6",
+    "marked": "^18.0.11",
     "papaparse": "^5.7.0",
     "qrcode": "^1.5.4",
     "radix-vue": "^1.9.17",
