@@ -4,6 +4,7 @@ import { TextTransformLayout } from '@/components/ui/text-transform-layout'
 import { Button } from '@/components/ui/button'
 import { Database } from 'lucide-vue-next'
 import { format } from 'sql-formatter'
+import UtilityFeedback from '@/components/addons/UtilityFeedback.vue'
 
 const input = ref('SELECT * FROM users WHERE id = 1')
 const output = ref('')
@@ -20,20 +21,25 @@ const formatSql = () => {
 </script>
 
 <template>
-  <TextTransformLayout
-    v-model:input="input"
-    v-model:output="output"
-    input-label="Input SQL"
-    output-label="Formatted SQL"
-    input-placeholder="Paste SQL here..."
-    output-placeholder="Result will appear here..."
-    :error="error"
-  >
-    <template #toolbar>
-      <Button @click="formatSql">
-        <Database class="mr-2 h-4 w-4" />
-        Format SQL
-      </Button>
-    </template>
-  </TextTransformLayout>
+  <div class="flex min-h-full flex-col gap-4 p-4">
+    <TextTransformLayout
+      v-model:input="input"
+      v-model:output="output"
+      input-label="Input SQL"
+      output-label="Formatted SQL"
+      input-placeholder="Paste SQL here..."
+      output-placeholder="Result will appear here..."
+      :error="error"
+    >
+      <template #toolbar>
+        <Button @click="formatSql">
+          <Database class="mr-2 h-4 w-4" />
+          Format SQL
+        </Button>
+      </template>
+    </TextTransformLayout>
+    <div class="mt-auto pt-4 border-t">
+      <UtilityFeedback utility-title="SQL Formatter" />
+    </div>
+  </div>
 </template>

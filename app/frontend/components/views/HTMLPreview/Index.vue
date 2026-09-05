@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
+import UtilityFeedback from '@/components/addons/UtilityFeedback.vue'
 
 const html = ref('<h1>Hello World</h1>')
 </script>
@@ -24,5 +25,8 @@ const html = ref('<h1>Hello World</h1>')
         </div>
       </CardContent>
     </Card>
+    <div class="mt-auto pt-4 border-t">
+      <UtilityFeedback utility-title="HTML Preview" />
+    </div>
   </div>
 </template>

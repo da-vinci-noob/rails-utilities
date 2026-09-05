@@ -7,6 +7,7 @@ import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
 import { Copy } from 'lucide-vue-next'
 import CryptoJS from 'crypto-js'
+import UtilityFeedback from '@/components/addons/UtilityFeedback.vue'
 
 const inputText = ref('Hello World')
 
@@ -49,5 +50,8 @@ const copyToClipboard = (text: string) => {
         </div>
       </CardContent>
     </Card>
+    <div class="mt-auto pt-4 border-t">
+      <UtilityFeedback utility-title="Hash Generator" />
+    </div>
   </div>
 </template>

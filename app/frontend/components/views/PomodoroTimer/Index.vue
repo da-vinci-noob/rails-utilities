@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import UtilityFeedback from '@/components/addons/UtilityFeedback.vue'
 
 const mode = ref<'focus' | 'short' | 'long'>('focus')
 const presets = { focus: 25, short: 5, long: 15 }
@@ -113,5 +114,8 @@ onUnmounted(() => {
         </div>
       </CardContent>
     </Card>
+    <div class="mt-auto pt-4 border-t">
+      <UtilityFeedback utility-title="Pomodoro Timer" />
+    </div>
   </div>
 </template>

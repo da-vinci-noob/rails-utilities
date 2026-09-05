@@ -1,4 +1,6 @@
-interface Utility {
+import { reactive } from 'vue'
+
+export interface Utility {
   id: number
   title: string
   description: string
@@ -22,7 +24,9 @@ export const categories = [
   'Misc'
 ] as const
 
-export const utilities: Utility[] = [
+// reactive: utilities registered at runtime through the plugin API (lib/pluginApi.ts)
+// must show up in the dashboard, sidebar, mobile nav and command palette.
+export const utilities: Utility[] = reactive([
   // {
   //   id: 1,
   //   title: 'All Utilities',
@@ -563,4 +567,4 @@ export const utilities: Utility[] = [
     category: 'Converters',
     createdAt: new Date('2024-11-25')
   }
-]
+])

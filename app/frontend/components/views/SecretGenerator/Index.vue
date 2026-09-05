@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Copy, RefreshCw } from 'lucide-vue-next'
 import CryptoJS from 'crypto-js'
+import UtilityFeedback from '@/components/addons/UtilityFeedback.vue'
 
 const length = ref(32)
 const output = ref('')
@@ -50,5 +51,8 @@ generate()
         </div>
       </CardContent>
     </Card>
+    <div class="mt-auto pt-4 border-t">
+      <UtilityFeedback utility-title="Secret Generator" />
+    </div>
   </div>
 </template>

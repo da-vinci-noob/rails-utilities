@@ -300,6 +300,13 @@ Metrics/MethodLength:
   Enabled: true
   Max: 25
 
+# Rake task bodies are a DSL block by construction; splitting them to satisfy a
+# line budget would hurt readability rather than help it.
+Metrics/BlockLength:
+  Exclude:
+    - '**/*.rake'
+    - 'Rakefile'
+
 ### Metrics Cops End
 
 ### Performance Cops start

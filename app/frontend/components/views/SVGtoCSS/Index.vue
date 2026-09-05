@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { Copy } from 'lucide-vue-next'
+import UtilityFeedback from '@/components/addons/UtilityFeedback.vue'
 
 const svgInput =
   ref(`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -101,5 +102,8 @@ const copyToClipboard = (text: string) => {
         </div>
       </CardContent>
     </Card>
+    <div class="mt-auto pt-4 border-t">
+      <UtilityFeedback utility-title="SVG to CSS" />
+    </div>
   </div>
 </template>

@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { Copy } from 'lucide-vue-next'
+import UtilityFeedback from '@/components/addons/UtilityFeedback.vue'
 
 const curlInput = ref(`curl -X POST https://api.example.com/users \\
   -H "Content-Type: application/json" \\
@@ -208,5 +209,8 @@ const copyToClipboard = () => {
         </div>
       </CardContent>
     </Card>
+    <div class="mt-auto pt-4 border-t">
+      <UtilityFeedback utility-title="cURL to Code" />
+    </div>
   </div>
 </template>

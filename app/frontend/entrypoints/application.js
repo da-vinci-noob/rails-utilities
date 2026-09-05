@@ -30,8 +30,26 @@ import { createApp } from 'vue'
 import App from '@/App.vue'
 import router from '@/router'
 
+// Imported after the router so plugin-registered utilities add their routes
+// via router.addRoute() instead of racing the static route table.
+import '@/plugins/example_text_analyzer'
+
 const appElement = document.querySelector('#app')
 if (appElement) {
   const app = createApp(App).use(router)
   app.mount(appElement)
+}
+
+// Register service worker for PWA offline support
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker
+      .register('/service-worker', { scope: '/' })
+      .then((registration) => {
+        console.log('ServiceWorker registered:', registration.scope)
+      })
+      .catch((error) => {
+        console.error('ServiceWorker registration failed:', error)
+      })
+  })
 }

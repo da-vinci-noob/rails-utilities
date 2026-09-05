@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
 import { Copy, RefreshCw } from 'lucide-vue-next'
+import UtilityFeedback from '@/components/addons/UtilityFeedback.vue'
 
 const length = ref(16)
 const output = ref('')
@@ -86,5 +87,8 @@ generate()
         </div>
       </CardContent>
     </Card>
+    <div class="mt-auto pt-4 border-t">
+      <UtilityFeedback utility-title="Random String Generator" />
+    </div>
   </div>
 </template>

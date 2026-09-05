@@ -2,6 +2,7 @@
 import Header from '@/components/addons/Header.vue'
 import Sidebar from '@/components/addons/Sidebar.vue'
 import WorkspaceOnboarding from '@/components/addons/WorkspaceOnboarding.vue'
+import PwaInstallPrompt from '@/components/addons/PwaInstallPrompt.vue'
 </script>
 
 <template>
@@ -17,4 +18,5 @@ import WorkspaceOnboarding from '@/components/addons/WorkspaceOnboarding.vue'
     </div>
   </div>
   <WorkspaceOnboarding />
+  <PwaInstallPrompt />
 </template>

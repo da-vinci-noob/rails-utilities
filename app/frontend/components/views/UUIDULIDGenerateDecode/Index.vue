@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import { RefreshCw, Copy } from 'lucide-vue-next'
 import { v4 as uuidv4 } from 'uuid'
 import { ulid, decodeTime } from 'ulid'
+import UtilityFeedback from '@/components/addons/UtilityFeedback.vue'
 
 const uuid = ref('')
 const ulidValue = ref('')
@@ -71,5 +72,8 @@ watch(ulidDecode, decodeULID)
         </div>
       </CardContent>
     </Card>
+    <div class="mt-auto pt-4 border-t">
+      <UtilityFeedback utility-title="UUID/ULID Generate/Decode" />
+    </div>
   </div>
 </template>

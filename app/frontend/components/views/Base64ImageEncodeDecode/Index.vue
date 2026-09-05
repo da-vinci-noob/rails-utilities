@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { Copy, Upload, Download } from 'lucide-vue-next'
+import UtilityFeedback from '@/components/addons/UtilityFeedback.vue'
 
 const mode = ref<'encode' | 'decode'>('encode')
 const imageFile = ref<File | null>(null)
@@ -163,5 +164,8 @@ const toggleMode = () => {
         </div>
       </CardContent>
     </Card>
+    <div class="mt-auto pt-4 border-t">
+      <UtilityFeedback utility-title="Base64 Image Encode/Decode" />
+    </div>
   </div>
 </template>

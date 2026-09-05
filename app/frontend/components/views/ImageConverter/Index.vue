@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import { Download } from 'lucide-vue-next'
+import UtilityFeedback from '@/components/addons/UtilityFeedback.vue'
 
 const formats = [
   { value: 'image/png', label: 'PNG', ext: 'png' },
@@ -147,5 +148,8 @@ const downloadImage = () => {
         </div>
       </CardContent>
     </Card>
+    <div class="mt-auto pt-4 border-t">
+      <UtilityFeedback utility-title="Image Converter" />
+    </div>
   </div>
 </template>

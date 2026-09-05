@@ -3,6 +3,7 @@ import { ref, computed } from 'vue'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import UtilityFeedback from '@/components/addons/UtilityFeedback.vue'
 
 interface IDInfo {
   type: string
@@ -199,5 +200,8 @@ const analyzeID = computed((): IDInfo | null => {
         <div v-else class="text-center text-muted-foreground py-8">Enter an ID to analyze</div>
       </CardContent>
     </Card>
+    <div class="mt-auto pt-4 border-t">
+      <UtilityFeedback utility-title="ID Analyzer" />
+    </div>
   </div>
 </template>

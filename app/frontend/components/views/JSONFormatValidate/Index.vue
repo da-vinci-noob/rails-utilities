@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import SavedSnippets from '@/components/addons/SavedSnippets.vue'
 import { useCopy } from '@/lib/useCopy'
 import { shareUrl } from '@/lib/shareUrl'
+import UtilityFeedback from '@/components/addons/UtilityFeedback.vue'
 
 const input = ref('')
 const output = ref('')
@@ -75,5 +76,8 @@ onMounted(() => {
         </label>
       </template>
     </TextTransformLayout>
+    <div class="mt-auto pt-4 border-t">
+      <UtilityFeedback utility-title="JSON Format/Validate" />
+    </div>
   </div>
 </template>

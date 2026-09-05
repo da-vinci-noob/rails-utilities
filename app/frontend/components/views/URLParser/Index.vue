@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
+import UtilityFeedback from '@/components/addons/UtilityFeedback.vue'
 
 const url = ref('https://example.com:8080/path?key=value#hash')
 
@@ -70,5 +71,8 @@ const parsed = computed(() => {
         </div>
       </CardContent>
     </Card>
+    <div class="mt-auto pt-4 border-t">
+      <UtilityFeedback utility-title="URL Parser" />
+    </div>
   </div>
 </template>

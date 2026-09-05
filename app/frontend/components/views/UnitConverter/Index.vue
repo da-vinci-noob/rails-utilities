@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import SavedSnippets from '@/components/addons/SavedSnippets.vue'
+import UtilityFeedback from '@/components/addons/UtilityFeedback.vue'
 
 const definitions = {
   Length: { m: 1, km: 1000, cm: 0.01, mm: 0.001, mi: 1609.344, ft: 0.3048, in: 0.0254 },
@@ -88,5 +89,8 @@ updateFrom()
         <p class="text-sm text-muted-foreground">Values update instantly. Precision is limited to seven significant digits.</p>
       </CardContent>
     </Card>
+    <div class="mt-auto pt-4 border-t">
+      <UtilityFeedback utility-title="Unit Converter" />
+    </div>
   </div>
 </template>

@@ -2,6 +2,7 @@
 
 > A comprehensive collection of **60 developer utilities** built with Rails 8, Vue 3, and TailwindCSS 4. All tools run client-side in the browser for privacy and speed.
 
+
 ![Vue 3](https://img.shields.io/badge/vue-3-42b883?style=for-the-badge&logo=vue.js)
 ![Rails 8](https://img.shields.io/badge/rails-8-cc0000?style=for-the-badge&logo=ruby-on-rails)
 ![TailwindCSS 4](https://img.shields.io/badge/tailwind-4-38bdf8?style=for-the-badge&logo=tailwindcss)
@@ -20,6 +21,9 @@
 - 📂 **Categorized** - Utilities organized in collapsible categories
 - 📱 **Responsive** - Works on desktop, tablet, and mobile
 - ⚡ **Fast** - No server round-trips for most operations
+- 🔍 **SEO Optimized** - Rich meta tags, Open Graph, Twitter Cards, and JSON-LD for every utility
+- 📦 **Installable PWA** - Install to home screen for offline access and app-like experience
+- 🧩 **Plugin API** - Extend the app with custom utilities using the plugin system
 
 ---
 
@@ -164,6 +168,108 @@ Beyond the tools themselves, the app remembers how you work:
 - **First-run onboarding** - Pick your favorite categories once; the dashboard pins suggested tools for you.
 
 All workspace data lives in `localStorage` — nothing is uploaded, no account needed.
+
+---
+
+## 🔍 SEO & Social Sharing
+
+Every utility page is fully optimized for search engines and social media:
+
+- **Rich meta tags** - Unique title, description, and keywords per utility
+- **Open Graph** - Rich previews when shared on Facebook, LinkedIn, Discord
+- **Twitter Cards** - Large image cards for Twitter shares
+- **JSON-LD** - Structured data for `WebApplication` schema
+- **Sitemap** - Auto-generated `sitemap.xml` covering the homepage and every utility route
+- **Semantic URLs** - Clean paths like `/json-format-validate`
+
+Generate the sitemap:
+
+```bash
+bundle exec rake sitemap:generate
+```
+
+---
+
+## 📱 Progressive Web App (PWA)
+
+Install Rails Utilities to your home screen for an app-like experience:
+
+- ✅ **Offline Support** - Service worker caches app shell and dynamic content
+- ✅ **Install Prompt** - Native "Add to Home Screen" banner
+- ✅ **Standalone Mode** - Runs without browser chrome
+- ✅ **Theme Colors** - Matches the dark theme
+- ✅ **Push Notifications** - Infrastructure ready for future notifications
+
+The PWA automatically caches:
+- App shell (HTML, CSS, icons)
+- Dynamically loaded utility components
+- API responses with network-first fallback
+
+---
+
+## ⚡ Performance Optimizations
+
+- **Code Splitting** - Vendor libraries split into `vendor-vue`, `vendor-ui`, and `vendor` chunks
+- **Route Prefetching** - Top 5 most-used utilities prefetched after initial load
+- **Lazy Loading** - All 60+ utility components loaded on-demand
+- **Optimized Caching** - Long-term caching with content hashes
+
+---
+
+## 🧩 Extending with Plugins
+
+Add your own custom utilities using the plugin API. Registered utilities get a
+route via `router.addRoute()` and appear in the dashboard, sidebar, mobile nav
+and command palette:
+
+```typescript
+import { registerUtility } from '@/lib/pluginApi'
+
+registerUtility({
+  id: 100,
+  title: 'My Custom Tool',
+  description: 'Does something useful',
+  icon: 'https://api.iconify.design/lucide:wrench.svg',
+  status: 'Beta',
+  category: 'Misc',
+  createdAt: new Date(),
+  component: () => import('@/components/views/MyCustomTool/Index.vue')
+})
+```
+
+Import the plugin file from `app/frontend/entrypoints/application.js` **after**
+the router import so the route is added to an initialised router.
+
+**Generate a utility scaffold:**
+
+```bash
+rails utility:generate[MyCustomUtility]
+```
+
+See [`docs/EXTENDING.md`](docs/EXTENDING.md) for full plugin API documentation.
+
+**Example custom utility included:** `Text Analyzer (Example)` - demonstrates the plugin API with live statistics.
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please read [`CONTRIBUTING.md`](CONTRIBUTING.md) for guidelines.
+
+### Quick Links
+
+- 🐛 [Report a Bug](https://github.com/da-vinci-noob/rails-utilities/issues/new?template=bug_report.md)
+- 💡 [Request a Feature](https://github.com/da-vinci-noob/rails-utilities/issues/new?template=feature_request.md)
+- ⭐ [Star on GitHub](https://github.com/da-vinci-noob/rails-utilities)
+- 📖 [Extension Documentation](docs/EXTENDING.md)
+
+Each utility page includes **Report Bug** and **Request Feature** links pre-populated with the utility name.
+
+---
+
+## 🌐 Live Demo
+
+Visit: [https://rails.da-vinci-noob.com](https://rails.da-vinci-noob.com)
 
 ---
 

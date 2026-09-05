@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Search, AlertCircle } from 'lucide-vue-next'
+import UtilityFeedback from '@/components/addons/UtilityFeedback.vue'
 
 const domain = ref('example.com')
 const result = ref<Record<string, string[]> | null>(null)
@@ -127,5 +128,8 @@ const getRecordType = (type: number): string => {
         </div>
       </CardContent>
     </Card>
+    <div class="mt-auto pt-4 border-t">
+      <UtilityFeedback utility-title="DNS Lookup" />
+    </div>
   </div>
 </template>

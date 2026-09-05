@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { Copy } from 'lucide-vue-next'
+import UtilityFeedback from '@/components/addons/UtilityFeedback.vue'
 
 const phpInput = ref(`$data = [
     'name' => 'John',
@@ -87,5 +88,8 @@ const copyToClipboard = () => navigator.clipboard.writeText(output.value)
         </div>
       </CardContent>
     </Card>
+    <div class="mt-auto pt-4 border-t">
+      <UtilityFeedback utility-title="PHP to JSON" />
+    </div>
   </div>
 </template>

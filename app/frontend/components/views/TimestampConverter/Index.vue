@@ -7,6 +7,7 @@ import { Label } from '@/components/ui/label'
 import { useCopy } from '@/lib/useCopy'
 import SavedSnippets from '@/components/addons/SavedSnippets.vue'
 import { shareUrl } from '@/lib/shareUrl'
+import UtilityFeedback from '@/components/addons/UtilityFeedback.vue'
 
 const timestamp = ref('')
 const dateInput = ref('')
@@ -112,5 +113,8 @@ onMounted(() => {
         <p v-if="error" class="text-sm text-destructive">{{ error }}</p>
       </CardContent>
     </Card>
+    <div class="mt-auto pt-4 border-t">
+      <UtilityFeedback utility-title="Timestamp Converter" />
+    </div>
   </div>
 </template>

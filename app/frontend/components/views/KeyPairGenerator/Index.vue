@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { Copy, RefreshCw, Download } from 'lucide-vue-next'
+import UtilityFeedback from '@/components/addons/UtilityFeedback.vue'
 
 const algorithms = [
   { value: 'RSA-OAEP', label: 'RSA-OAEP (2048-bit)', bits: 2048 },
@@ -157,5 +158,8 @@ const downloadKey = (content: string, filename: string) => {
         </div>
       </CardContent>
     </Card>
+    <div class="mt-auto pt-4 border-t">
+      <UtilityFeedback utility-title="Key Pair Generator" />
+    </div>
   </div>
 </template>

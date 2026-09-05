@@ -1,9 +1,36 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Rails Utilities" %></title>
+    <% meta = meta_for_path(request.path) %>
+    <title><%= meta[:title] %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#18181b">
+    
+    <%# SEO Meta Tags %>
+    <meta name="description" content="<%= meta[:description] %>">
+    <meta name="keywords" content="<%= meta[:keywords] %>">
+    <link rel="canonical" href="<%= meta[:og_url] %>">
+
+    <%# Open Graph / Facebook %>
+    <meta property="og:type" content="<%= meta[:og_type] %>">
+    <meta property="og:url" content="<%= meta[:og_url] %>">
+    <meta property="og:title" content="<%= meta[:og_title] %>">
+    <meta property="og:description" content="<%= meta[:og_description] %>">
+    <meta property="og:image" content="<%= meta[:og_image] %>">
+    
+    <%# Twitter %>
+    <meta name="twitter:card" content="<%= meta[:twitter_card] %>">
+    <meta name="twitter:url" content="<%= meta[:og_url] %>">
+    <meta name="twitter:title" content="<%= meta[:twitter_title] %>">
+    <meta name="twitter:description" content="<%= meta[:twitter_description] %>">
+    <meta name="twitter:image" content="<%= meta[:twitter_image] %>">
+    
+    <%# JSON-LD Structured Data %>
+    <script type="application/ld+json">
+      <%= json_ld_for_path(request.path) %>
+    </script>
+    
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 

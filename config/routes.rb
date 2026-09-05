@@ -7,8 +7,10 @@ Rails.application.routes.draw do
   get 'up' => 'rails/health#show', as: :rails_health_check
 
   # Render dynamic PWA files from app/views/pwa/*
-  get 'service-worker' => 'rails/pwa#service_worker', as: :pwa_service_worker
-  get 'manifest' => 'rails/pwa#manifest', as: :pwa_manifest
+  # The formats are pinned because only service-worker.js / manifest.json.erb
+  # exist; without this a request preferring text/html raises MissingTemplate.
+  get 'service-worker' => 'rails/pwa#service_worker', as: :pwa_service_worker, defaults: { format: :js }
+  get 'manifest' => 'rails/pwa#manifest', as: :pwa_manifest, defaults: { format: :json }
 
   # Defines the root path route ("/")
   # root "posts#index"

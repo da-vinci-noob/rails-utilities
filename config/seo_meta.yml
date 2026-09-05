@@ -1,0 +1,33 @@
+# SEO copy for high-traffic utilities. Keys are utility titles exactly as they
+# appear in app/frontend/data/utilities.ts. Titles absent from this file fall
+# back to MetaHelper#default_utility_meta.
+"JSON Format/Validate":
+  description: "Format, validate and beautify JSON online. Instant syntax checking, entirely in your browser."
+  keywords: "json formatter, json validator, json beautifier, format json online"
+"Unix Time Converter":
+  description: "Convert Unix timestamps to human-readable dates and back, with UTC and local output."
+  keywords: "unix timestamp converter, epoch converter, unix time to date"
+"Base64 String Encode/Decode":
+  description: "Encode and decode Base64 strings instantly. No upload, no server round-trip."
+  keywords: "base64 encode, base64 decode, base64 converter"
+"JWT Debugger":
+  description: "Decode and inspect JWT tokens: header, payload and claims, without sending the token anywhere."
+  keywords: "jwt debugger, jwt decoder, decode jwt token"
+"QR Code Reader/Generator":
+  description: "Generate QR codes from text or URLs and read QR codes from images, fully client-side."
+  keywords: "qr code generator, qr code reader, create qr code"
+"URL Encode/Decode":
+  description: "Percent-encode and decode URLs and query strings safely."
+  keywords: "url encode, url decode, percent encoding, urlencode online"
+"UUID/ULID Generate/Decode":
+  description: "Generate and decode UUIDs and ULIDs, including timestamp extraction."
+  keywords: "uuid generator, ulid generator, uuid decoder"
+"CSS Beautify/Minify":
+  description: "Beautify or minify CSS instantly in the browser."
+  keywords: "css beautifier, css minifier, format css online"
+"SQL Formatter":
+  description: "Format and pretty-print SQL queries across common dialects."
+  keywords: "sql formatter, sql beautifier, format sql online"
+"Hash Generator":
+  description: "Generate MD5, SHA-1, SHA-256 and SHA-512 hashes from text locally."
+  keywords: "hash generator, md5, sha256, sha512, checksum"

@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { Download } from 'lucide-vue-next'
+import UtilityFeedback from '@/components/addons/UtilityFeedback.vue'
 
 const fileTypes = [
   { value: 'txt', label: 'Text (.txt)', mime: 'text/plain' },
@@ -101,5 +102,8 @@ loadTemplate()
         </Button>
       </CardContent>
     </Card>
+    <div class="mt-auto pt-4 border-t">
+      <UtilityFeedback utility-title="File Generator" />
+    </div>
   </div>
 </template>

@@ -16,5 +16,20 @@ export default defineConfig({
   ],
   resolve: {
     alias: aliases
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        // Split vendor code so utility chunks stay small.
+        // rolldown (Vite 8) requires the function form.
+        manualChunks(id) {
+          if (id.includes('/app/frontend/components/ui/')) return 'ui'
+          if (!id.includes('/node_modules/')) return undefined
+          if (/\/node_modules\/(vue|vue-router|@vue)\//.test(id)) return 'vendor-vue'
+          return 'vendor'
+        }
+      }
+    },
+    chunkSizeWarningLimit: 1000
   }
 })

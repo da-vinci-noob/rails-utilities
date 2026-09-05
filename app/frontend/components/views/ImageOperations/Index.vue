@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Download, RotateCw, FlipHorizontal, FlipVertical } from 'lucide-vue-next'
+import UtilityFeedback from '@/components/addons/UtilityFeedback.vue'
 
 const imagePreview = ref('')
 const processedImage = ref('')
@@ -188,5 +189,8 @@ const rotate90 = () => {
         </div>
       </CardContent>
     </Card>
+    <div class="mt-auto pt-4 border-t">
+      <UtilityFeedback utility-title="Image Operations" />
+    </div>
   </div>
 </template>

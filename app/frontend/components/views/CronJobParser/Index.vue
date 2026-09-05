@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import cronstrue from 'cronstrue'
+import UtilityFeedback from '@/components/addons/UtilityFeedback.vue'
 
 const cronExpression = ref('*/5 * * * *')
 
@@ -46,5 +47,8 @@ const description = computed(() => {
         </div>
       </CardContent>
     </Card>
+    <div class="mt-auto pt-4 border-t">
+      <UtilityFeedback utility-title="Cron Job Parser" />
+    </div>
   </div>
 </template>

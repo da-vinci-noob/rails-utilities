@@ -6,6 +6,7 @@ import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
 import { useCopy } from '@/lib/useCopy'
 import { Check, Copy, Eye, EyeOff, X } from 'lucide-vue-next'
+import UtilityFeedback from '@/components/addons/UtilityFeedback.vue'
 
 const password = ref('')
 const showPassword = ref(false)
@@ -194,5 +195,8 @@ const { state: copyState, copy } = useCopy()
         </div>
       </CardContent>
     </Card>
+    <div class="mt-auto pt-4 border-t">
+      <UtilityFeedback utility-title="Password Strength" />
+    </div>
   </div>
 </template>

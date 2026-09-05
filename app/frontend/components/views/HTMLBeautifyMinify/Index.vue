@@ -4,6 +4,7 @@ import { TextTransformLayout } from '@/components/ui/text-transform-layout'
 import { Button } from '@/components/ui/button'
 import { FileCode, Minimize2 } from 'lucide-vue-next'
 import { html as beautifyHtmlFn } from 'js-beautify'
+import UtilityFeedback from '@/components/addons/UtilityFeedback.vue'
 
 const input = ref('<div><h1>Hello</h1><p>World</p></div>')
 const output = ref('')
@@ -32,23 +33,28 @@ const minifyHtml = () => {
 </script>
 
 <template>
-  <TextTransformLayout
-    v-model:input="input"
-    v-model:output="output"
-    input-label="Input HTML"
-    input-placeholder="Paste HTML here..."
-    output-placeholder="Result will appear here..."
-    :error="error"
-  >
-    <template #toolbar>
-      <Button @click="beautifyHtml">
-        <FileCode class="mr-2 h-4 w-4" />
-        Beautify
-      </Button>
-      <Button variant="secondary" @click="minifyHtml">
-        <Minimize2 class="mr-2 h-4 w-4" />
-        Minify
-      </Button>
-    </template>
-  </TextTransformLayout>
+  <div class="flex min-h-full flex-col gap-4 p-4">
+    <TextTransformLayout
+      v-model:input="input"
+      v-model:output="output"
+      input-label="Input HTML"
+      input-placeholder="Paste HTML here..."
+      output-placeholder="Result will appear here..."
+      :error="error"
+    >
+      <template #toolbar>
+        <Button @click="beautifyHtml">
+          <FileCode class="mr-2 h-4 w-4" />
+          Beautify
+        </Button>
+        <Button variant="secondary" @click="minifyHtml">
+          <Minimize2 class="mr-2 h-4 w-4" />
+          Minify
+        </Button>
+      </template>
+    </TextTransformLayout>
+    <div class="mt-auto pt-4 border-t">
+      <UtilityFeedback utility-title="HTML Beautify/Minify" />
+    </div>
+  </div>
 </template>

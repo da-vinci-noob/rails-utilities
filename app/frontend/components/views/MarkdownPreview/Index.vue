@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { marked } from 'marked'
+import UtilityFeedback from '@/components/addons/UtilityFeedback.vue'
 
 const markdown = ref('# Hello World\n\nThis is **markdown**.')
 
@@ -27,5 +28,8 @@ const html = computed(() => {
         </div>
       </CardContent>
     </Card>
+    <div class="mt-auto pt-4 border-t">
+      <UtilityFeedback utility-title="Markdown Preview" />
+    </div>
   </div>
 </template>

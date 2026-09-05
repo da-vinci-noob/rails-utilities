@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
+import UtilityFeedback from '@/components/addons/UtilityFeedback.vue'
 
 const pattern = ref('\\d+')
 const flags = ref('g')
@@ -48,5 +49,8 @@ const matches = computed(() => {
         </div>
       </CardContent>
     </Card>
+    <div class="mt-auto pt-4 border-t">
+      <UtilityFeedback utility-title="RegExp Tester" />
+    </div>
   </div>
 </template>

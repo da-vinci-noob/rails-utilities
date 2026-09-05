@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { diffLines } from 'diff'
+import UtilityFeedback from '@/components/addons/UtilityFeedback.vue'
 
 const text1 = ref('')
 const text2 = ref('')
@@ -39,5 +40,8 @@ const diff = computed(() => {
         </div>
       </CardContent>
     </Card>
+    <div class="mt-auto pt-4 border-t">
+      <UtilityFeedback utility-title="Text Diff Checker" />
+    </div>
   </div>
 </template>

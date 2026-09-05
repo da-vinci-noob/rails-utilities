@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import QRCode from 'qrcode'
+import UtilityFeedback from '@/components/addons/UtilityFeedback.vue'
 
 const inputText = ref('https://example.com')
 const qrCodeDataUrl = ref('')
@@ -42,5 +43,8 @@ watch(inputText, generateQR)
         </div>
       </CardContent>
     </Card>
+    <div class="mt-auto pt-4 border-t">
+      <UtilityFeedback utility-title="QR Code Reader/Generator" />
+    </div>
   </div>
 </template>

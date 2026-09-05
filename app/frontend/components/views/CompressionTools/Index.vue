@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { Copy, Minimize2, Maximize2 } from 'lucide-vue-next'
+import UtilityFeedback from '@/components/addons/UtilityFeedback.vue'
 
 const mode = ref<'compress' | 'decompress'>('compress')
 const input = ref('Hello, World! This is a test string for compression.')
@@ -151,5 +152,8 @@ const toggleMode = () => {
         </div>
       </CardContent>
     </Card>
+    <div class="mt-auto pt-4 border-t">
+      <UtilityFeedback utility-title="Compression Tools" />
+    </div>
   </div>
 </template>

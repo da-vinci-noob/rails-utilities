@@ -7,6 +7,7 @@ import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Copy, RefreshCw } from 'lucide-vue-next'
 import { loremIpsum } from 'lorem-ipsum'
+import UtilityFeedback from '@/components/addons/UtilityFeedback.vue'
 
 const paragraphCount = ref(3)
 const output = ref('')
@@ -57,5 +58,8 @@ generate()
         />
       </CardContent>
     </Card>
+    <div class="mt-auto pt-4 border-t">
+      <UtilityFeedback utility-title="Lorem Ipsum Generator" />
+    </div>
   </div>
 </template>

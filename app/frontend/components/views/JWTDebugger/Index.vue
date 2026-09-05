@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { jwtDecode } from 'jwt-decode'
+import UtilityFeedback from '@/components/addons/UtilityFeedback.vue'
 
 const token = ref('')
 const decoded = computed(() => {
@@ -31,5 +32,8 @@ const decoded = computed(() => {
         </div>
       </CardContent>
     </Card>
+    <div class="mt-auto pt-4 border-t">
+      <UtilityFeedback utility-title="JWT Debugger" />
+    </div>
   </div>
 </template>

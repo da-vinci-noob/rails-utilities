@@ -3,6 +3,7 @@ import { ref, computed } from 'vue'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
+import UtilityFeedback from '@/components/addons/UtilityFeedback.vue'
 
 const certInput = ref(`-----BEGIN CERTIFICATE-----
 MIIDXTCCAkWgAwIBAgIJAJC1HiIAZAiUMA0GCSqGSIb3Qk3AAAABBQAwPjELMAkG
@@ -159,5 +160,8 @@ const decoded = computed(() => {
         </div>
       </CardContent>
     </Card>
+    <div class="mt-auto pt-4 border-t">
+      <UtilityFeedback utility-title="Certificate Decoder (X.509)" />
+    </div>
   </div>
 </template>

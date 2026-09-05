@@ -6,6 +6,7 @@ import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
 import { Copy } from 'lucide-vue-next'
 import { format } from 'date-fns'
+import UtilityFeedback from '@/components/addons/UtilityFeedback.vue'
 
 const currentUnix = ref(Math.floor(Date.now() / 1000))
 const unixInput = ref('')
@@ -134,6 +135,9 @@ watch(dateInput, convertDateToUnix)
           </div>
         </CardContent>
       </Card>
+    </div>
+    <div class="mt-auto pt-4 border-t">
+      <UtilityFeedback utility-title="Unix Time Converter" />
     </div>
   </div>
 </template>
