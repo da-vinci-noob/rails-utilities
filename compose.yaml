@@ -1,0 +1,40 @@
+name: rails_utilities
+
+# Runs the production image built by ./Dockerfile.
+#
+# There is no database, cache or queue service here on purpose: the app has no
+# ActiveRecord adapter in the Gemfile and no config/database.yml -- all 60
+# utilities run client-side, so Puma is the only process this app needs.
+#
+#   export RAILS_MASTER_KEY=$(cat config/master.key)
+#   docker compose up --build
+#
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      # RUBY_VERSION is intentionally not passed through: rvm exports
+      # RUBY_VERSION=ruby-4.0.6 on the host, which would resolve the base image
+      # to ruby:ruby-4.0.6-slim. The Dockerfile default tracks .ruby-version.
+    image: rails-utilities:latest
+    environment:
+      RAILS_ENV: production
+      # Decrypts config/credentials.yml.enc to derive secret_key_base.
+      # Compose aborts with the message below when it is not set.
+      RAILS_MASTER_KEY: "${RAILS_MASTER_KEY:?set RAILS_MASTER_KEY, e.g. export RAILS_MASTER_KEY=$(cat config/master.key)}"
+      # production.rb forces TLS and there is no terminator in front of this
+      # container, so plain HTTP would be answered with a redirect to https.
+      RAILS_FORCE_SSL: "false"
+      RAILS_LOG_TO_STDOUT: "true"
+      RAILS_MAX_THREADS: "3"
+    ports:
+      - "${PORT:-3000}:3000"
+    healthcheck:
+      # /up is Rails' health endpoint, wired in config/routes.rb.
+      test: ["CMD", "curl", "-fsS", "-o", "/dev/null", "http://localhost:3000/up"]
+      interval: 30s
+      timeout: 5s
+      start_period: 20s
+      retries: 3
+    restart: unless-stopped

@@ -42,6 +42,26 @@ bun install
 bin/dev
 ```
 
+Rails serves on <http://localhost:3000> and Vite on 3036.
+
+### Docker
+
+`compose.yaml` runs the production image built by `Dockerfile`. There is no
+database, cache or queue service because the app has no ActiveRecord adapter —
+every utility runs client-side, so Puma is the only process required.
+
+```bash
+export RAILS_MASTER_KEY=$(cat config/master.key)
+docker compose up --build
+```
+
+`RAILS_MASTER_KEY` is required: it decrypts `config/credentials.yml.enc` to
+derive `secret_key_base`. Compose refuses to start without it.
+
+Override the published port with `PORT`, e.g. `PORT=3100 docker compose up`.
+`RAILS_FORCE_SSL` is set to `false` in compose because nothing terminates TLS
+in front of the container; production defaults to `true`.
+
 ---
 
 ## 📦 Tech Stack
@@ -209,10 +229,9 @@ The PWA automatically caches:
 
 ## ⚡ Performance Optimizations
 
-- **Code Splitting** - Vendor libraries split into `vendor-vue`, `vendor-ui`, and `vendor` chunks
-- **Route Prefetching** - Top 5 most-used utilities prefetched after initial load
-- **Lazy Loading** - All 60+ utility components loaded on-demand
-- **Optimized Caching** - Long-term caching with content hashes
+- **Vendor chunking** - Dependencies split into `vendor-vue`, `ui` and `vendor` chunks so a utility page does not re-download shared code
+- **Route-level code splitting** - Every utility view is a dynamic import, emitted as its own chunk
+- **Content-hashed assets** - Long-lived caching, with the service worker revalidating in the background
 
 ---
 
