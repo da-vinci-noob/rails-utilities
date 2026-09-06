@@ -18,6 +18,9 @@ export default defineConfig({
     alias: aliases
   },
   build: {
+    // Production sourcemaps were ~80% of public/vite. They are not needed to
+    // serve the app and are re-derivable from the tagged source.
+    sourcemap: false,
     rollupOptions: {
       output: {
         // Split vendor code so utility chunks stay small.
